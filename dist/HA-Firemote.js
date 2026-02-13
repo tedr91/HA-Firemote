@@ -1267,6 +1267,38 @@ class FiremoteCard extends LitElement {
             background: #2f3b54;
           }
 
+          .kaleidescape-remote-body .dpadContainer {
+            grid-column: 1 / 3;
+            width: calc(var(--sz) * 9.2rem);
+            height: calc(var(--sz) * 9.2rem);
+            margin-bottom: calc(var(--sz) * 0.2rem);
+          }
+
+          .kaleidescape-remote-body .directionButtonContainer {
+            place-self: center;
+            border-color: #1f293b;
+            box-shadow: rgb(0 0 0 / 30%) 0 calc(var(--sz) * 0.12rem) calc(var(--sz) * 0.36rem);
+          }
+
+          .kaleidescape-remote-body .dpadbutton {
+            background: #28344c;
+            outline: solid #1f293b calc(var(--sz) * 0.0714rem);
+          }
+
+          .kaleidescape-remote-body .dpadbutton:active {
+            background: #243046;
+          }
+
+          .kaleidescape-remote-body .centerbutton {
+            width: calc(var(--sz) * 4.85rem);
+            height: calc(var(--sz) * 4.85rem);
+            margin: 0;
+            place-self: center;
+            border-radius: calc(var(--sz) * 0.75rem);
+            background: linear-gradient(180deg, #3d4b69 0%, #2f3b55 100%);
+            box-shadow: inset 0 0 calc(var(--sz) * 0.35rem) rgb(0 0 0 / 45%);
+          }
+
           .kaleidescape-remote-body #power-button,
           .kaleidescape-remote-body #replay-button {
             border-radius: 100%;
@@ -3700,7 +3732,7 @@ class FiremoteCard extends LitElement {
             appLaunchButtons.set("confBtn3", config.app_launch_3 || 'disney-plus');
             appLaunchButtons.set("confBtn4", config.app_launch_4 || 'hulu');
         }
-        else if(['AR1', 'AR2', 'AR3', 'KA1', 'apple-tv'].includes(displayedRemote)) {
+        else if(['AR1', 'AR2', 'AR3', 'apple-tv'].includes(displayedRemote)) {
             buttonStyle = 'button-round';
         }
         else if(['CC1', 'CC2', 'CC3', 'chromecast'].includes(displayedRemote)) {
@@ -3760,7 +3792,7 @@ class FiremoteCard extends LitElement {
 
 
         // Return button HTML
-        if(['CC1', 'CC2', 'CC3', 'AR1', 'AR2', 'AR3', 'KA1'].includes(config.defaultRemoteStyle_override) || (['apple-tv', 'chromecast', 'kaleidescape'].includes(config.device_family) && !(config.defaultRemoteStyle_override))) {
+        if(['CC1', 'CC2', 'CC3', 'AR1', 'AR2', 'AR3'].includes(config.defaultRemoteStyle_override) || (['apple-tv', 'chromecast'].includes(config.device_family) && !(config.defaultRemoteStyle_override))) {
           return html `
             ${ Array.from(appLaunchButtons.keys()).map(key => {
               var val = appLaunchButtons.get(key);
@@ -5532,7 +5564,7 @@ class FiremoteCard extends LitElement {
             <ha-icon icon="mdi:menu"></ha-icon>
           </button>
 
-          <div class="dpadContainer AR1Dpad">
+          <div class="dpadContainer">
             <button class="centerbutton" id="center-button" @pointerdown=${this.buttonDown}></button>
             <div class="directionButtonContainer">
               <button class="dpadbutton" id="up-button" @pointerdown=${this.buttonDown}></button>
