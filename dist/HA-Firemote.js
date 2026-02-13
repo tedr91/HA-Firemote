@@ -33,7 +33,7 @@ const translationmap = new Map(Object.entries(rosettaStone));
 const appButtonMax = { "AF4":  6, "AF5":  6, "AF6":  6, "AFJTV": 6, "AFXF2": 6, "AR1": 10, "AR2":   8, "AR3":  8,
                        "CC1":  8, "CC2":  8, "CC3":  8, "NS2":   6, "ON1":   8, "ON2":  8, "RVRP": 10, "RHR": 10,
                        "RTR":  8, "RWR": 10, "RVR": 10, "RSR":  10, "XM1":  10, "XM2": 10, "HO1":   6, "HO2":  8,
-                       "HO3":  6, "HO4":  6, "AL1": appmap.size,  "AL2": appmap.size,};
+                       "HO3":  6, "HO4":  6, "KA1":  6, "AL1": appmap.size,  "AL2": appmap.size,};
 
 
 function deviceAttributeQuery(deviceAttribute, configvar){
@@ -235,6 +235,9 @@ class FiremoteCard extends LitElement {
       case "AR1":
         return calculateMasonryViewHeight(747.5, scale);
         break;
+      case "KA1":
+        return calculateMasonryViewHeight(760, scale);
+        break;
       case "AR2":
         return calculateMasonryViewHeight(597, scale);
         break;
@@ -326,6 +329,12 @@ class FiremoteCard extends LitElement {
       case "AR1":
         return {
           grid_rows: calculateLayoutCellHeight(747.5, scale),
+          grid_columns: calculateLayoutCellWidth(184, scale),
+        }
+        break;
+      case "KA1":
+        return {
+          grid_rows: calculateLayoutCellHeight(760, scale),
           grid_columns: calculateLayoutCellWidth(184, scale),
         }
         break;
@@ -425,6 +434,9 @@ class FiremoteCard extends LitElement {
     var rokuEntities = Object.keys(e.entities).filter(
         (eid) => e.entities[eid].platform === 'roku'
     );
+    var kaleidescapeEntities = Object.keys(e.entities).filter(
+      (eid) => e.entities[eid].platform === 'kaleidescape'
+    );
     if (androidTVEntities.length > 0) {
         return { 'entity': androidTVEntities[0],
                  'device_family': 'amazon-fire',
@@ -446,6 +458,13 @@ class FiremoteCard extends LitElement {
                  'compatibility_mode': 'default',
                };
     }
+    else if (kaleidescapeEntities.length > 0) {
+        return { 'entity': kaleidescapeEntities[0],
+                 'device_family': 'kaleidescape',
+                 'device_type': 'strato',
+                 'compatibility_mode': 'default',
+               };
+    }
     else {
         return { 'entity': '',
                  'device_family': 'amazon-fire',
@@ -457,7 +476,7 @@ class FiremoteCard extends LitElement {
 
   setConfig(config) {
     if (!config.entity) {
-     throw new Error("entity must be defined. You need to define an Apple TV, Chromecast, Fire TV, NVIDIA Shield, onn., Roku, Xiaomi Mi, or any other media_player entity");
+     throw new Error("entity must be defined. You need to define an Apple TV, Chromecast, Fire TV, Kaleidescape, NVIDIA Shield, onn., Roku, Xiaomi Mi, or any other media_player entity");
     }
     this._config = config;
   }
@@ -957,6 +976,35 @@ class FiremoteCard extends LitElement {
             overflow: hidden;
           }
 
+          .kaleidescape-remote-body {
+            background: linear-gradient(180deg, rgb(20, 26, 40) 0%, rgb(35, 44, 65) 100%);
+            border: solid #53607a calc(var(--sz) * 0.05rem);
+            border-radius: calc(var(--sz) * 2rem);
+            display: grid;
+            justify-items: center;
+            align-content: flex-start;
+            grid-column-gap: calc(var(--sz) * 1rem);
+            grid-row-gap: calc(var(--sz) * 0.6rem);
+            grid-template-columns: 1fr 1fr;
+            width: calc(var(--sz) * 13rem);
+            min-height: calc(var(--sz) * 48rem);
+            padding: calc(var(--sz) * 1.2rem) calc(var(--sz) * 0.6rem) calc(var(--sz) * 1.8rem);
+            box-shadow: rgb(0 0 0 / 45%) 0 calc(var(--sz) * 0.35rem) calc(var(--sz) * 1.2rem);
+          }
+
+          .kaleidescapeTag {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            color: #d6def2;
+            letter-spacing: calc(var(--sz) * 0.06rem);
+            font-size: calc(var(--sz) * 0.8rem);
+            text-transform: uppercase;
+            padding: calc(var(--sz) * 0.2rem) calc(var(--sz) * 0.5rem);
+            border: solid rgb(214 222 242 / 35%) calc(var(--sz) * 0.05rem);
+            border-radius: calc(var(--sz) * 0.7rem);
+            background: rgb(4 10 24 / 30%);
+          }
+
           .AR2TopSection, .AR2BottomSection {
             display: grid;
             justify-items: center;
@@ -1203,6 +1251,25 @@ class FiremoteCard extends LitElement {
           .apple-remote-body .remote-button {
             height: calc(var(--sz) * 4.75rem);
             width: calc(var(--sz) * 4.75rem);
+          }
+
+          .kaleidescape-remote-body .remote-button {
+            height: calc(var(--sz) * 3.9rem);
+            width: calc(var(--sz) * 3.9rem);
+            border-radius: calc(var(--sz) * 0.9rem);
+            border-color: #1a2030;
+            background: linear-gradient(180deg, #3f4d6c 0%, #303d56 100%);
+            color: #f4f7ff;
+            box-shadow: rgb(0 0 0 / 20%) 0 calc(var(--sz) * 0.2rem) calc(var(--sz) * 0.25rem) 0;
+          }
+
+          .kaleidescape-remote-body .remote-button:active {
+            background: #2f3b54;
+          }
+
+          .kaleidescape-remote-body #power-button,
+          .kaleidescape-remote-body #replay-button {
+            border-radius: 100%;
           }
 
           .apple-remote-body.AR2 .remote-button {
@@ -3488,6 +3555,9 @@ class FiremoteCard extends LitElement {
     if(this._config.device_family == 'apple-tv') {
       AppLaunchButtonFilterCssValue = 'grayscale(0%) brightness(100%)';
     }
+    else if(this._config.device_family == 'kaleidescape') {
+      AppLaunchButtonFilterCssValue = 'grayscale(0%) brightness(95%)';
+    }
     else if (['onn', 'homatics'].includes(this._config.device_family) || ['ON1', 'ON2', 'HO1', 'HO2', 'HO3', 'HO4'].includes(this._config.defaultRemoteStyle_override)) {
       AppLaunchButtonFilterCssValue = 'grayscale(25%) brightness(80%)';
     }
@@ -3630,7 +3700,7 @@ class FiremoteCard extends LitElement {
             appLaunchButtons.set("confBtn3", config.app_launch_3 || 'disney-plus');
             appLaunchButtons.set("confBtn4", config.app_launch_4 || 'hulu');
         }
-        else if(['AR1', 'AR2', 'AR3', 'apple-tv'].includes(displayedRemote)) {
+        else if(['AR1', 'AR2', 'AR3', 'KA1', 'apple-tv'].includes(displayedRemote)) {
             buttonStyle = 'button-round';
         }
         else if(['CC1', 'CC2', 'CC3', 'chromecast'].includes(displayedRemote)) {
@@ -3690,7 +3760,7 @@ class FiremoteCard extends LitElement {
 
 
         // Return button HTML
-        if(['CC1', 'CC2', 'CC3', 'AR1', 'AR2', 'AR3'].includes(config.defaultRemoteStyle_override) || (['apple-tv', 'chromecast'].includes(config.device_family) && !(config.defaultRemoteStyle_override))) {
+        if(['CC1', 'CC2', 'CC3', 'AR1', 'AR2', 'AR3', 'KA1'].includes(config.defaultRemoteStyle_override) || (['apple-tv', 'chromecast', 'kaleidescape'].includes(config.device_family) && !(config.defaultRemoteStyle_override))) {
           return html `
             ${ Array.from(appLaunchButtons.keys()).map(key => {
               var val = appLaunchButtons.get(key);
@@ -3874,6 +3944,10 @@ class FiremoteCard extends LitElement {
 
     function renderXiaomiLogo() {
       return html`<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 281 46" width="281" height="46" xml:space="preserve" class="remote-logo xiaomiLogo"><path style="stroke:none;stroke-width:1;stroke-dasharray:none;stroke-linecap:butt;stroke-dashoffset:0;stroke-linejoin:miter;stroke-miterlimit:4;fill:#000;fill-rule:nonzero;opacity:1" transform="translate(.5 .5)" d="M158.12.7c-6.42 0-12.86.81-16.92 4.81s-5.64 10-5.64 17.38S137 36.16 141 40.16s10.66 5 17.08 5 12.86-.86 16.92-4.86 5.67-10 5.67-17.41-1.43-13.24-5.49-17.23S164.55.7 158.12.7zm9.75 32.82c-2.27 2.58-6.37 3-9.75 3s-7.47-.45-9.74-3S146 27.38 146 22.9s.15-7.95 2.41-10.54 5.9-3 9.74-3 7.48.45 9.74 3 2.41 6.05 2.41 10.54-.17 8.03-2.43 10.62zM69.1 1.49H60a.69.69 0 0 0-.7.69v41.49a.69.69 0 0 0 .7.69h9.1a.7.7 0 0 0 .7-.69V2.18a.7.7 0 0 0-.7-.69zM30.87 22.57 47 2.57a.66.66 0 0 0-.52-1.08H34.87a.9.9 0 0 0-.71.35L23.48 16 13.07 1.85a.9.9 0 0 0-.71-.36H.68a.66.66 0 0 0-.52 1.08l16.35 20.37L.14 43.29a.66.66 0 0 0 .52 1.07h11.68a.9.9 0 0 0 .72-.37L24 29.89 34.29 44a.91.91 0 0 0 .72.36h11.53a.66.66 0 0 0 .52-1.07zM252.33 4.64c-3.7-3.44-9.65-3.86-14.46-3.86-6.22 0-10.18 1.32-12.58 2.56h-1.67c-2.35-1.3-6.49-2.56-13-2.56-4.82 0-10.72.35-14.36 3.41-3 2.52-3.71 5.89-3.71 12.79v26.67a.7.7 0 0 0 .71.69h9.09a.7.7 0 0 0 .71-.69V21.7c0-4-.15-8.08.7-9.62.67-1.2 1.71-2.53 6.65-2.53 5.89 0 7.28.41 8.21 3a9.37 9.37 0 0 1 .38 2.56v28.54a.69.69 0 0 0 .7.69h9.09a.7.7 0 0 0 .71-.69V15.13a9.37 9.37 0 0 1 .38-2.56c.93-2.61 2.31-3 8.2-3 4.94 0 6 1.33 6.65 2.53.86 1.54.7 5.66.7 9.62v22a.7.7 0 0 0 .71.69h9.09a.7.7 0 0 0 .7-.69v-25c0-7.28-.23-10.95-3.6-14.08zM121.82 7.18C117.62 1.39 110-.36 102.14.06a56 56 0 0 0-15 2.66c-.88.33-.77 1.09-.78 1.55 0 1.53-.15 5.49-.14 7.1 0 .71.87 1 1.6.78a56.6 56.6 0 0 1 12.62-3c4.67-.38 11 0 12.76 2.65.83 1.26.87 3.19 1 5.16a78.77 78.77 0 0 0-11.51-.4c-3.35.15-9.69.44-13.5 2.44-3.06 1.63-4.86 3.11-5.82 5.87a17 17 0 0 0-.73 7.06c.56 5 2.28 7.43 4.61 9.15 3.67 2.72 8.31 4.15 17.89 3.94 12.75-.28 16.1-4.4 17.79-7.33 2.88-5 2.38-12.85 2.29-17.68-.03-2.01-.33-8.59-3.4-12.83zm-8.31 26.17c-1.2 2.53-5.49 2.92-8 3-4.7.21-8.16 0-10.4-1.08A5.12 5.12 0 0 1 92.4 31c-.08-1.63-.05-2.46.68-3.43 1.66-2.15 6-2.61 10.41-2.78a78.94 78.94 0 0 1 10.94.63c-.03 3.24-.24 6.5-.92 7.93zM280.17 1.49h-9.09a.7.7 0 0 0-.71.69v41.49a.7.7 0 0 0 .71.69h9.09a.7.7 0 0 0 .71-.69V2.18a.7.7 0 0 0-.71-.69z"/></svg>`;
+    }
+
+    function renderKaleidescapeTag() {
+      return html`<div class="kaleidescapeTag">Kaleidescape</div>`;
     }
 
     // Render Amazon Fire Remote Style AF1
@@ -5440,6 +5514,67 @@ class FiremoteCard extends LitElement {
     }
 
 
+    // Render Kaleidescape Remote - Style 1
+    if ( getDeviceAttribute('defaultRemoteStyle') == 'KA1' ) {
+    return html`
+      <ha-card>
+
+      ${cssVars}
+
+      <div class="kaleidescape-remote-body KA1">
+          ${drawDeviceName(this, this._config, 'top')}
+          ${renderKaleidescapeTag()}
+
+          <button class="remote-button${powerStatusClass}" id="power-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:power"></ha-icon>
+          </button>
+          <button class="remote-button" id="hamburger-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:menu"></ha-icon>
+          </button>
+
+          <div class="dpadContainer AR1Dpad">
+            <button class="centerbutton" id="center-button" @pointerdown=${this.buttonDown}></button>
+            <div class="directionButtonContainer">
+              <button class="dpadbutton" id="up-button" @pointerdown=${this.buttonDown}></button>
+              <button class="dpadbutton" id="right-button" @pointerdown=${this.buttonDown}></button>
+              <button class="dpadbutton" id="left-button" @pointerdown=${this.buttonDown}></button>
+              <button class="dpadbutton" id="down-button" @pointerdown=${this.buttonDown}></button>
+            </div>
+          </div>
+
+          <button class="remote-button" id="back-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:arrow-left"></ha-icon>
+          </button>
+          <button class="remote-button${homeStatusClass}" id="home-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:home"></ha-icon>
+          </button>
+
+          <button class="remote-button" id="rewind-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:rewind"></ha-icon>
+          </button>
+          <button class="remote-button${playingStatusClass}" id="playpause-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:play-pause"></ha-icon>
+          </button>
+
+          <button class="remote-button" id="fastforward-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:fast-forward"></ha-icon>
+          </button>
+          <button class="remote-button" id="replay-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:replay"></ha-icon>
+          </button>
+
+          ${drawAppLaunchButtons(this, this._config, 2, appButtonMax["KA1"])}
+
+          ${drawDeviceName(this, this._config, 'bottom')}
+          ${drawFiremoteVersionNumber(this, this._config)}
+
+      </div>
+
+      </ha-card>
+    `;
+    }
+
+
     // Render Apple TV Remote - Style 2
     if ( getDeviceAttribute('defaultRemoteStyle') == 'AR2' ) {
     return html`
@@ -5788,12 +5923,117 @@ class FiremoteCard extends LitElement {
     const overrides = this._config.button_overrides;
     const atvRemoteEntity = this._config.android_tv_remote_entity;
     const rokuRemoteEntity = this._config.roku_remote_entity;
+    const kaleidescapeRemoteEntity = this._config.kaleidescape_remote_entity;
     const activityLight = this.renderRoot.querySelector('.activityLight');
     const start = Date.now();
     const holdTime = 500;
     const buttonID = clicked.target.id;
     var pressedTarget = clicked.target;
     var timer = null;
+
+    function sendKaleidescapeRemoteCommand(command, hold_secs = 0) {
+      if (!kaleidescapeRemoteEntity) {
+        unsupportedButton();
+        return false;
+      }
+      _hass.callService("remote", "send_command", { entity_id: kaleidescapeRemoteEntity, command: command, num_repeats: 1, delay_secs: 0, hold_secs: hold_secs });
+      return true;
+    }
+
+    function handleKaleidescapeAction(actionType) {
+      if (buttonID == 'power-button' && actionType == 'click') {
+        const state = _hass.states[entity];
+        const stateStr = state ? state.state : 'off';
+        if(stateStr != 'off' && stateStr != 'unavailable' && stateStr != 'standby') {
+          _hass.callService("media_player", "turn_off", { entity_id: entity});
+        }
+        else {
+          _hass.callService("media_player", "turn_on", { entity_id: entity});
+        }
+        return true;
+      }
+
+      if (buttonID == 'up-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('up'); }
+      if (buttonID == 'left-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('left'); }
+      if (buttonID == 'right-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('right'); }
+      if (buttonID == 'down-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('down'); }
+      if (buttonID == 'center-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('select'); }
+      if (buttonID == 'back-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('cancel'); }
+      if (buttonID == 'home-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('go_movie_covers'); }
+      if (buttonID == 'hamburger-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('menu_toggle'); }
+      if (buttonID == 'rewind-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('scan_reverse'); }
+      if (buttonID == 'fastforward-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('scan_forward'); }
+      if (buttonID == 'replay-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('replay'); }
+      if (buttonID == 'playpause-button' && actionType == 'click') {
+        _hass.callService("media_player", "media_play_pause", { entity_id: entity});
+        return true;
+      }
+
+      if (['up-button', 'left-button', 'right-button', 'down-button'].includes(buttonID) && actionType == 'hold') {
+        const commandMap = {
+          'up-button': 'up',
+          'left-button': 'left',
+          'right-button': 'right',
+          'down-button': 'down',
+        };
+        if (!sendKaleidescapeRemoteCommand(commandMap[buttonID])) {
+          return true;
+        }
+        clicked.target.addEventListener("pointerup", rls, true);
+        let rpt = setInterval(function() {
+          sendKaleidescapeRemoteCommand(commandMap[buttonID]);
+        }, 250);
+        function rls() {
+          clearInterval(rpt);
+        }
+        return true;
+      }
+
+      if (buttonID == 'rewind-button' && actionType == 'hold') {
+        if (!sendKaleidescapeRemoteCommand('scan_reverse')) {
+          return true;
+        }
+        clicked.target.addEventListener("pointerup", rls, true);
+        let rpt = setInterval(function() {
+          sendKaleidescapeRemoteCommand('scan_reverse');
+        }, 250);
+        function rls() {
+          clearInterval(rpt);
+        }
+        return true;
+      }
+
+      if (buttonID == 'fastforward-button' && actionType == 'hold') {
+        if (!sendKaleidescapeRemoteCommand('scan_forward')) {
+          return true;
+        }
+        clicked.target.addEventListener("pointerup", rls, true);
+        let rpt = setInterval(function() {
+          sendKaleidescapeRemoteCommand('scan_forward');
+        }, 250);
+        function rls() {
+          clearInterval(rpt);
+        }
+        return true;
+      }
+
+      if (buttonID == 'keyboard-button') {
+        unsupportedButton();
+        return true;
+      }
+
+      if (actionType == 'hold') {
+        return true;
+      }
+
+      const unsupportedButtons = ['volume-up-button', 'volume-down-button', 'mute-button', 'channel-up-button', 'channel-down-button'];
+      if (unsupportedButtons.includes(buttonID)) {
+        unsupportedButton();
+        return true;
+      }
+
+      return false;
+    }
 
     // Rebuild AppMap - allow hdmi inputs where appropriate & add configured custom launchers from YAML
     refreshAppMap(this._config, 4, 1, true);
@@ -5932,7 +6172,7 @@ class FiremoteCard extends LitElement {
       }
       sourceName = translateToUsrLang(sourceName);
       fireEvent(this, 'haptic', 'light');
-      if (typeof remoteCommand != 'undefined' && ['apple-tv', 'roku'].includes(deviceFamily)) {
+      if (typeof remoteCommand != 'undefined' && ['apple-tv', 'roku', 'kaleidescape'].includes(deviceFamily)) {
         var data = JSON.parse(remoteCommand);
         switch (deviceFamily) {
           case 'apple-tv':
@@ -5940,6 +6180,9 @@ class FiremoteCard extends LitElement {
             break;
           case 'roku':
             data['entity_id'] = rokuRemoteEntity;
+            break;
+          case 'kaleidescape':
+            data['entity_id'] = kaleidescapeRemoteEntity;
             break;
         }
         _hass.callService("remote", "send_command", data);
@@ -6036,6 +6279,12 @@ class FiremoteCard extends LitElement {
 
         // provide haptic feedback for button press
         fireEvent(that, 'haptic', 'light')
+
+        if(deviceFamily == 'kaleidescape') {
+          if (handleKaleidescapeAction(actionType)) {
+            return;
+          }
+        }
 
 
 
@@ -8108,6 +8357,11 @@ class FiremoteCardEditor extends LitElement {
       heading = this.hass.config.language == 'he' || this.hass.config.language == 'fr' ?
         this.translateToUsrLang('Entity') + ' Roku Media Player' : 'Roku Media Player '+ this.translateToUsrLang('Entity');
     }
+    else if(this._config.device_family == 'kaleidescape') {
+      mediaPlayerEntities = this.getMediaPlayerEntitiesByPlatform('kaleidescape');
+      heading = this.hass.config.language == 'he' || this.hass.config.language == 'fr' ?
+        this.translateToUsrLang('Entity') + ' Kaleidescape Media Player' : 'Kaleidescape Media Player '+ this.translateToUsrLang('Entity');
+    }
     else {
       mediaPlayerEntities = this.getMediaPlayerEntitiesByPlatform('androidtv');
       heading = this.hass.config.language == 'he' || this.hass.config.language == 'fr' ? 
@@ -8182,6 +8436,31 @@ class FiremoteCardEditor extends LitElement {
                 ${blankRemoteEntity}
                 ${remoteEntities.map((eid) => {
                   if (eid != this._config.roku_remote_entity) {
+                    return html`<option value="${eid}">${this.hass.states[eid].attributes.friendly_name || eid}</option> `;
+                  }
+                  else {
+                    return html`<option value="${eid}" selected>${this.hass.states[eid].attributes.friendly_name || eid}</option> `;
+                  }
+                })}
+              </select>
+            <br>
+            <br>`
+    }
+    if(this._config.device_family == 'kaleidescape') {
+        var dropdownLabel = this.translateToUsrLang('Associated') + ' Kaleidescape Remote ' + this.translateToUsrLang('Entity');
+        dropdownLabel = this.hass.config.language == 'he' ?  'ישות משויכת ל-' + 'Kaleidescape Remote ' : dropdownLabel;
+        if(this._config.kaleidescape_remote_entity == '' || typeof this._config.kaleidescape_remote_entity == 'undefined') {
+            blankRemoteEntity = html `<option value="" selected> - - - - </option> `;
+        }
+        remoteEntities = this.getRemoteEntitiesByPlatform('kaleidescape');
+        return html`
+              ${dropdownLabel}:<br>
+              <select name="kaleidescape_remote_entity" id="kaleidescape_remote_entity" style="padding: .6em; font-size: 1em;" .value=${optionValue}
+                @focusout=${this.configChanged}
+                @change=${this.configChanged} >
+                ${blankRemoteEntity}
+                ${remoteEntities.map((eid) => {
+                  if (eid != this._config.kaleidescape_remote_entity) {
                     return html`<option value="${eid}">${this.hass.states[eid].attributes.friendly_name || eid}</option> `;
                   }
                   else {
@@ -8279,7 +8558,7 @@ class FiremoteCardEditor extends LitElement {
 
 
   getCompatibilityModeDropdown(optionValue, deviceFriendlyName){
-    if(['apple-tv', 'chromecast', 'homatics', 'nvidia-shield', 'onn', 'roku', 'none'].includes(this._config.device_family)) { return; }
+    if(['apple-tv', 'chromecast', 'homatics', 'kaleidescape', 'nvidia-shield', 'onn', 'roku', 'none'].includes(this._config.device_family)) { return; }
     if(['xiaomi-tv-stick-4k', 'fire_tv_stick_4k_max_second_gen', 'fire_tv_stick_4k_second_gen'].includes(this._config.device_type)) { return; }
     var heading = this.translateToUsrLang('Compatibility Mode');
     return html`
@@ -8471,7 +8750,7 @@ class FiremoteCardEditor extends LitElement {
 
         ${this.getMediaPlayerEntityDropdown(this._config.entity)}
 
-        ${this.getAssociatedRemoteEntityDropdown(this._config.android_tv_remote_entity)}
+        ${this.getAssociatedRemoteEntityDropdown(this._config.kaleidescape_remote_entity || this._config.apple_tv_remote_entity || this._config.roku_remote_entity || this._config.android_tv_remote_entity)}
 
         <hr>
 
@@ -8501,6 +8780,7 @@ class FiremoteCardEditor extends LitElement {
           <option value="AR1">Apple TV ${this.translateToUsrLang('remote style')} 1</option>
           <option value="AR2">Apple TV ${this.translateToUsrLang('remote style')} 2</option>
           <option value="AR3">Apple TV ${this.translateToUsrLang('remote style')} 3</option>
+          <option value="KA1">Kaleidescape ${this.translateToUsrLang('style')} 1</option>
           <option value="CC1">Chromecast (snow)</option>
           <option value="CC2">Chromecast (sky)</option>
           <option value="CC3">Chromecast (sunrise)</option>

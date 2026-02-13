@@ -60,6 +60,7 @@ Short demonstration videos also exist for [Roku Firemote](https://www.youtube.co
   * [onn. Media Player](https://github.com/PRProd/HA-Firemote/wiki/Supported-Devices#onn-media-player)
   * [Roku TV, and Media Player](https://github.com/PRProd/HA-Firemote/wiki/Supported-Devices#roku)
   * [Xiaomi](https://github.com/PRProd/HA-Firemote/wiki/Supported-Devices#xiaomi)
+  * [Kaleidescape](https://www.home-assistant.io/integrations/kaleidescape/)
   * [Any device (advanced)](https://github.com/PRProd/HA-Firemote/wiki/entity:-none)
 
 <br>
@@ -68,7 +69,7 @@ Short demonstration videos also exist for [Roku Firemote](https://www.youtube.co
 ## Download and Setup via Home Assistant UI & HACS
 1. Turn on ADB/USB/Network debugging on your Amazon, onn., Shield, Xiaomi, Chromecast, or Android TV device - [Video Tutorial](https://www.youtube.com/watch?v=XL7neKn1d-Y)
     - For NVIDIA Shield users, be sure to turn on **Network debugging** (not shown in the video)
-    - (does not apply to Apple TV or Roku users)
+    - (does not apply to Apple TV, Roku, or Kaleidescape users)
 1. Connect your device to Home Assistant:
    - Amazon, Chromecast, Shield, onn., Xiaomi, or Android TV users:
      - Set up the Home Assistant [Android Debug Bridge Integration](https://www.home-assistant.io/integrations/androidtv/) and connect it to your device (**REQUIRED in every setup** [why?](https://github.com/PRProd/HA-Firemote/wiki#why-do-i-still-need-the-adb-integration-when-there-is-an-android-remote-integration))
@@ -77,6 +78,8 @@ Short demonstration videos also exist for [Roku Firemote](https://www.youtube.co
      - Set up the Home Assistant [Apple TV Integration](https://www.home-assistant.io/integrations/apple_tv) and connect it to your device.  This will create a "Media Player" entity, and a "Remote" entity automatically.
    - Roku Users
      - Set up the Home Assistant [Roku Integration](https://www.home-assistant.io/integrations/roku) and connect it to your device.  This will create a "Media Player" entity, a "Remote" entity, and multiple others as well.
+   - Kaleidescape Users
+     - Set up the Home Assistant [Kaleidescape Integration](https://www.home-assistant.io/integrations/kaleidescape) and connect it to your device. This will create a "Media Player" entity and a "Remote" entity.
 1. Click on the HACS sidebar option, then type "Firemote Card" into the search bar
 1. Use the 3 dots on the right side of the search result to select **Download** or click on the search result then tap the DOWNLOAD button in the lower right.
 1. You will be prompted to reload your browser.  Click the **RELOAD** button to continue
@@ -84,7 +87,7 @@ Short demonstration videos also exist for [Roku Firemote](https://www.youtube.co
 ## OR Install Manually
 1. Turn on ADB/USB/Network debugging on your Amazon, Homatics, onn., Shield, Xiaomi, Chromecast, or Android TV device - [Video Tutorial](https://www.youtube.com/watch?v=XL7neKn1d-Y)
     - For NVIDIA Shield users, be sure to turn on **Network debugging** (not shown in the video)
-    - (does not apply to Apple TV or Roku users)
+    - (does not apply to Apple TV, Roku, or Kaleidescape users)
 1. Connect your device to Home Assistant:
    - Amazon, Chromecast, Homatics, Shield, onn., Xiaomi, or Android TV users:
      - Set up the Home Assistant [Android Debug Bridge Integration](https://www.home-assistant.io/integrations/androidtv/) and connect it to your device (**REQUIRED in every setup** [why?](https://github.com/PRProd/HA-Firemote/wiki#why-do-i-still-need-the-adb-integration-when-there-is-an-android-remote-integration))
@@ -93,6 +96,8 @@ Short demonstration videos also exist for [Roku Firemote](https://www.youtube.co
      - Set up the Home Assistant [Apple TV Integration](https://www.home-assistant.io/integrations/apple_tv) and connect it to your device.  This will create a "Media Player" entity, and a "Remote" entity automatically.
    - Roku Users
      - Set up the Home Assistant [Roku Integration](https://www.home-assistant.io/integrations/roku) and connect it to your device.  This will create a "Media Player" entity, a "Remote" entity, and multiple others as well.
+   - Kaleidescape Users
+     - Set up the Home Assistant [Kaleidescape Integration](https://www.home-assistant.io/integrations/kaleidescape) and connect it to your device. This will create a "Media Player" entity and a "Remote" entity.
 1. Download the contents of the [dist/](https://github.com/PRProd/HA-Firemote/blob/main/dist/) directory, and place it in your Home Assistant /config/www directory
 1. [Register the HA-Firemote.js file that you just installed as a new resource](https://developers.home-assistant.io/docs/frontend/custom-ui/registering-resources/)
 
@@ -102,7 +107,7 @@ Short demonstration videos also exist for [Roku Firemote](https://www.youtube.co
 ## How to use
 1. On any dashboard, click the +ADD CARD button
 1. Search by cards for "Firemote Card" and click on it - [help: It's not showing up](https://github.com/PRProd/HA-Firemote/wiki/Force-a-Refresh)
-1. Under the **Device Family** dropdown, choose "Amazon Fire", "Apple TV",  "Chromecast", "Homatics", "NVIDIA Shield", "onn.", "Roku", "Xiaomi", or "[none/other](https://github.com/PRProd/HA-Firemote/wiki/entity:-none)"
+1. Under the **Device Family** dropdown, choose "Amazon Fire", "Apple TV",  "Chromecast", "Homatics", "Kaleidescape", "NVIDIA Shield", "onn.", "Roku", "Xiaomi", or "[none/other](https://github.com/PRProd/HA-Firemote/wiki/entity:-none)"
    - Amazon, Chromecast, Shield, onn., Xiaomi, or Android TV users:
      - Under **Device Model**, select the device model that you own. (Help: Which [Amazon Fire](https://developer.amazon.com/docs/fire-tv/device-specifications.html) or [NVIDIA Shield](https://www.nvidia.com/en-us/shield/)  device do I own?)
      - Under the Android Debug Bridge Entity dropdown, a list of your Android Debug Bridge integration entities will appear.  Select the one you wish to control.
@@ -115,6 +120,10 @@ Short demonstration videos also exist for [Roku Firemote](https://www.youtube.co
      - Under **Roku Device Model**, select the device model that you own
      - Under **Roku Media Player Entity**, select the Roku Media Player entity you wish to control
      - Under **Associated Roku Remote Entity**, select the Roku remote entity that is associated with the Roku Media Player Entity you chose in the previous step
+   - Kaleidescape Users
+     - Under **Kaleidescape Device Model**, select your device model
+     - Under **Kaleidescape Media Player Entity**, select the Kaleidescape Media Player entity you wish to control
+     - Under **Associated Kaleidescape Remote Entity**, select the Kaleidescape remote entity that is associated with the Kaleidescape Media Player Entity you chose in the previous step
 1. Make any other optional changes to your card, then click "SAVE"  Other options include changing the app launch buttons to apps that you use most often, or changing the style of your remote control to look like something completely different from what shipped with your device.  You can even add names and adjust the size of your Firemote card too!
 
 ![Config](https://github.com/PRProd/HA-Firemote/assets/25486599/9a4f061c-9584-44df-92f8-07d5e8346c6b)
@@ -128,6 +137,9 @@ Short demonstration videos also exist for [Roku Firemote](https://www.youtube.co
 ## Screenshots from Users
 ![Dashboard](https://github.com/PRProd/HA-Firemote/assets/25486599/ddc0dc74-2b5d-47bd-b73f-05249dda3377)<br>
 [Click here](https://github.com/PRProd/HA-Firemote/discussions/129) to see the full gallery
+
+### Kaleidescape (KA1)
+Kaleidescape-specific screenshot gallery entries will appear here as users submit them.
 
 <br>
 <br>
@@ -177,19 +189,53 @@ app_launch_1: netflix
 app_launch_2: function-find-my-remote
 app_launch_3: function-mute
 ```
+```yaml
+type: custom:firemote-card
+entity: media_player.kaleidescape_theater
+device_family: kaleidescape
+device_type: strato
+kaleidescape_remote_entity: remote.kaleidescape_theater
+defaultRemoteStyle_override: KA1
+app_launch_1: kaleidescape
+app_launch_2: netflix
+visible_name_text: Theater
+name_position: top
+scale: 100
+```
+
+### Kaleidescape button mapping (KA1)
+| Firemote Button | Kaleidescape Command / Action |
+| --------------- | ----------------------------- |
+| D-pad Up        | `remote.send_command` → `up` |
+| D-pad Down      | `remote.send_command` → `down` |
+| D-pad Left      | `remote.send_command` → `left` |
+| D-pad Right     | `remote.send_command` → `right` |
+| Select / Center | `remote.send_command` → `select` |
+| Back            | `remote.send_command` → `cancel` |
+| Home            | `remote.send_command` → `go_movie_covers` |
+| Menu            | `remote.send_command` → `menu_toggle` |
+| Replay          | `remote.send_command` → `replay` |
+| Rewind          | `remote.send_command` → `scan_reverse` |
+| Fast Forward    | `remote.send_command` → `scan_forward` |
+| Play/Pause      | `media_player.media_play_pause` |
+| Power           | `media_player.turn_on` / `media_player.turn_off` |
+
+> [!NOTE]
+> In `KA1`, `volume-up`, `volume-down`, `mute`, `channel-up`, `channel-down`, and `keyboard` are currently unsupported by default for Kaleidescape and may require `button_overrides`.
 
 Options:
 | Name                   | Type   | Required | Options                                                          | Description                            |
 | ---------------------- | ------ | -------- | ---------------------------------------------------------------- | -------------------------------------- |
 | type                   | string | yes      | custom:firemote-card                                             | Type of the card                       |
-| entity                 | string | yes      | any valid media player entity created in the [Android Debug Bridge Integration](https://www.home-assistant.io/integrations/androidtv/), [Apple TV Integration](https://www.home-assistant.io/integrations/apple_tv) or the [Roku Integration](https://www.home-assistant.io/integrations/roku) or [none](https://github.com/PRProd/HA-Firemote/wiki/entity:-none)| entity_id                              |
-| device_family          | string | yes      | amazon-fire<br>apple-tv<br>chromecast<br>nvidia-shield<br>onn<br>roku<br>xiaomi<br>[none](https://github.com/PRProd/HA-Firemote/wiki/entity:-none) | Manufacturer Family            |
+| entity                 | string | yes      | any valid media player entity created in the [Android Debug Bridge Integration](https://www.home-assistant.io/integrations/androidtv/), [Apple TV Integration](https://www.home-assistant.io/integrations/apple_tv), [Kaleidescape Integration](https://www.home-assistant.io/integrations/kaleidescape) or the [Roku Integration](https://www.home-assistant.io/integrations/roku) or [none](https://github.com/PRProd/HA-Firemote/wiki/entity:-none)| entity_id                              |
+| device_family          | string | yes      | amazon-fire<br>apple-tv<br>chromecast<br>kaleidescape<br>nvidia-shield<br>onn<br>roku<br>xiaomi<br>[none](https://github.com/PRProd/HA-Firemote/wiki/entity:-none) | Manufacturer Family            |
 |android_tv_remote_entity| string | no       | any valid entity created in the [Android TV Remote Integration](https://www.home-assistant.io/integrations/androidtv_remote/) | entity_id<br>Ignored in Apple TV and Roku configurations |
 | apple_tv_remote_entity | string | yes*     | any valid remote entity created in the [Apple TV Integration](https://www.home-assistant.io/integrations/apple_tv)  | entity_id<br>* Required ONLY in Apple TV configurations |
+| kaleidescape_remote_entity | string | yes*     | any valid remote entity created in the [Kaleidescape Integration](https://www.home-assistant.io/integrations/kaleidescape)  | entity_id<br>* Required ONLY in Kaleidescape configurations |
 | roku_remote_entity     | string | yes*     | any valid remote entity created in the [Roku Integration](https://www.home-assistant.io/integrations/roku/)  | entity_id<br>* Required ONLY in Roku configurations |
-| device_type            | string | yes      | [appletv-4k-gen3](https://support.apple.com/kb/SP886)<br>[appletv-4k-gen2](https://support.apple.com/kb/SP845)<br>[appletv-4k-gen1](https://support.apple.com/kb/SP769)<br>[appletv-gen4](https://support.apple.com/kb/SP724)<br>[appletv-gen3](https://support.apple.com/kb/SP648)<br>[appletv-gen2](https://support.apple.com/kb/SP598)<br>[appletv-gen1](https://support.apple.com/kb/SP19)<br>chromecast-4k<br>[fire_tv_toshiba_v35](https://github.com/PRProd/HA-Firemote/wiki/Smart-TV---Toshiba-V35-Series-LED-FHD-HD---Fire-TV-(2021)) <br> [fire_tv_4_series](https://github.com/PRProd/HA-Firemote/wiki/Smart-TV---Fire-TV-4-Series-(2021)) <br> fire_tv_jvc-4k-2021 <br> fire_tv_insignia_f20 <br> [fire_tv_cube_third_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Cube---3rd-Gen-(2022)) <br> [fire_tv_cube_second_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Cube---2nd-Gen-(2019)) <br> [fire_tv_cube_first_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Cube---1st-Gen-(2018)) <br> [fire_tv_stick_4k_max_second_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick-4K-Max-2nd-Gen-(2023)) <br> [fire_tv_stick_4k_second_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick-4K-2nd-Gen-(2023)) <br>[fire_tv_stick_4k_max](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick-4K-Max---1st-Gen-(2021)) <br> [fire_tv_3rd_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick---3rd-Gen-(2020)) <br> [fire_tv_stick_lite](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick-Lite---1st-Gen-(2020)) <br> [fire_stick_4k](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick-4K---1st-Gen-(2018)) <br> [fire_stick_second_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick---2nd-Gen-(2016---2019)) <br> [fire_stick_first_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick-1st-Gen-(2014)) <br> [fire_tv_second_gen_2015](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-%E2%80%90-2nd-Gen-(2015)) <br> [box-4-4k-plus](https://github.com/PRProd/HA-Firemote/wiki/Homatics-Box-R-4K-Plus) <br> dune-hd-box-4-4k-plus <br>  onn-streaming-device-4k-pro <br> [onn-4k-streaming-box](https://github.com/PRProd/HA-Firemote/wiki/onn.-Google-TV-4K-Streaming-Box-(2023)) <br> onn-full-hd-streaming-stick <br> roku-streambar-pro <br> roku-streambar <br> roku-ultra-lt-2023 <br> roku-ultra-lt <br> roku-ultra-2020 <br> roku-streaming-stick-4k <br> roku-express-4k-plus <br> roku-express-4k <br> roku-express <br> roku-premiere <br> roku-generic-hisense <br> roku-generic-tcl <br> roku-generic-westinghouse <br> shield-tv-2017 <br> shield-tv-pro-2017 <br> shield-tv-2019 <br> shield-tv-pro-2019 <br> mi-box-s <br> xiaomi-tv-stick-4k <br> [other](https://github.com/PRProd/HA-Firemote/wiki/entity:-none)| The type of device you are controlling<br>[Which devices are supported?](https://github.com/PRProd/HA-Firemote/wiki/Supported-Devices) |
-| compatibility_mode | string | no | default <br> strong <br> event0 <br> event1 <br> event2 <br> event3 <br> event4 <br> event5 <br> event6 <br> event7 <br> event8 <br> event9 <br> event10 <br> event11 <br> event12 <br> event13 | Adjust this value only if your buttons are completely unresponsive<br><br>Ignored in Apple TV configurations<br><br>[FAQ Available for additional help](https://github.com/PRProd/HA-Firemote#faq) |
-|defaultRemoteStyle_override | string | no | AF1 <br> AF2 <br> AF3 <br> AF4 <br> AF5 <br> AF6 <br> AFJTV <br> AFXF2 <br> AR1 <br> AR2 <br> AR3 <br> CC1 <br> CC2 <br> CC3 <br> HO1 <br> HO2 <br> HO3 <br> HO4 <br> NS1 <br> NS2 <br> ON1 <br> ON2 <br> RVRP <br> RVR <br> RSR <br> RHR <br> RTR <br> RWR <br> XM1 <br> XM2 <br> AL1 <br> AL2 | Optionally select a style of remote different from the one that shipped with your device |
+| device_type            | string | yes      | [appletv-4k-gen3](https://support.apple.com/kb/SP886)<br>[appletv-4k-gen2](https://support.apple.com/kb/SP845)<br>[appletv-4k-gen1](https://support.apple.com/kb/SP769)<br>[appletv-gen4](https://support.apple.com/kb/SP724)<br>[appletv-gen3](https://support.apple.com/kb/SP648)<br>[appletv-gen2](https://support.apple.com/kb/SP598)<br>[appletv-gen1](https://support.apple.com/kb/SP19)<br>chromecast-4k<br>[fire_tv_toshiba_v35](https://github.com/PRProd/HA-Firemote/wiki/Smart-TV---Toshiba-V35-Series-LED-FHD-HD---Fire-TV-(2021)) <br> [fire_tv_4_series](https://github.com/PRProd/HA-Firemote/wiki/Smart-TV---Fire-TV-4-Series-(2021)) <br> fire_tv_jvc-4k-2021 <br> fire_tv_insignia_f20 <br> [fire_tv_cube_third_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Cube---3rd-Gen-(2022)) <br> [fire_tv_cube_second_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Cube---2nd-Gen-(2019)) <br> [fire_tv_cube_first_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Cube---1st-Gen-(2018)) <br> [fire_tv_stick_4k_max_second_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick-4K-Max-2nd-Gen-(2023)) <br> [fire_tv_stick_4k_second_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick-4K-2nd-Gen-(2023)) <br>[fire_tv_stick_4k_max](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick-4K-Max---1st-Gen-(2021)) <br> [fire_tv_3rd_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick---3rd-Gen-(2020)) <br> [fire_tv_stick_lite](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick-Lite---1st-Gen-(2020)) <br> [fire_stick_4k](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick-4K---1st-Gen-(2018)) <br> [fire_stick_second_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick---2nd-Gen-(2016---2019)) <br> [fire_stick_first_gen](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-Stick-1st-Gen-(2014)) <br> [fire_tv_second_gen_2015](https://github.com/PRProd/HA-Firemote/wiki/Fire-TV-%E2%80%90-2nd-Gen-(2015)) <br> [box-4-4k-plus](https://github.com/PRProd/HA-Firemote/wiki/Homatics-Box-R-4K-Plus) <br> dune-hd-box-4-4k-plus <br>  onn-streaming-device-4k-pro <br> [onn-4k-streaming-box](https://github.com/PRProd/HA-Firemote/wiki/onn.-Google-TV-4K-Streaming-Box-(2023)) <br> onn-full-hd-streaming-stick <br> roku-streambar-pro <br> roku-streambar <br> roku-ultra-lt-2023 <br> roku-ultra-lt <br> roku-ultra-2020 <br> roku-streaming-stick-4k <br> roku-express-4k-plus <br> roku-express-4k <br> roku-express <br> roku-premiere <br> roku-generic-hisense <br> roku-generic-tcl <br> roku-generic-westinghouse <br> shield-tv-2017 <br> shield-tv-pro-2017 <br> shield-tv-2019 <br> shield-tv-pro-2019 <br> mi-box-s <br> xiaomi-tv-stick-4k <br> strato <br> [other](https://github.com/PRProd/HA-Firemote/wiki/entity:-none)| The type of device you are controlling<br>[Which devices are supported?](https://github.com/PRProd/HA-Firemote/wiki/Supported-Devices) |
+| compatibility_mode | string | no | default <br> strong <br> event0 <br> event1 <br> event2 <br> event3 <br> event4 <br> event5 <br> event6 <br> event7 <br> event8 <br> event9 <br> event10 <br> event11 <br> event12 <br> event13 | Adjust this value only if your buttons are completely unresponsive<br><br>Ignored in Apple TV and Kaleidescape configurations<br><br>[FAQ Available for additional help](https://github.com/PRProd/HA-Firemote#faq) |
+|defaultRemoteStyle_override | string | no | AF1 <br> AF2 <br> AF3 <br> AF4 <br> AF5 <br> AF6 <br> AFJTV <br> AFXF2 <br> AR1 <br> AR2 <br> AR3 <br> KA1 <br> CC1 <br> CC2 <br> CC3 <br> HO1 <br> HO2 <br> HO3 <br> HO4 <br> NS1 <br> NS2 <br> ON1 <br> ON2 <br> RVRP <br> RVR <br> RSR <br> RHR <br> RTR <br> RWR <br> XM1 <br> XM2 <br> AL1 <br> AL2 | Optionally select a style of remote different from the one that shipped with your device |
 | app_launch_1<br>app_launch_2<br>app_launch_3<br>app_launch_4<br>app_launch_5<br>etc... | string | no | [ See App Launch Button Customization section for options](#app-launch-button-customization) | Quick launch apps customization |
 |hdmi_1<br>hdmi_2<br>hdmi_3</br>hdmi_4| string | no | Personalized name for this HDMI input | The name entered here will appear on the button (truncated to 8 characters to fit) |
 | scale       | integer| no       | Any positive number                                           | Change the size of this card by percentage. The default size is 100 |

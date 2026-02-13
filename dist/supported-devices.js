@@ -487,6 +487,27 @@ const devices = {
   },
 
 
+  "kaleidescape": {
+
+    "meta": {
+      "friendlyName": "Kaleidescape",
+      "supported": true,
+    },
+
+    "noCategory": {
+
+      "strato": {
+        "supported": true,
+        "friendlyName": "Strato / Premier",
+        "defaultRemoteStyle": "KA1",
+        "hdmiInputs": 0,
+      },
+
+    },
+
+  },
+
+
   "none": {
 
     "meta": {
