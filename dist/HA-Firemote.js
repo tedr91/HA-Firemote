@@ -5577,15 +5577,20 @@ class FiremoteCard extends LitElement {
           <button class="remote-button" id="back-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:arrow-left"></ha-icon>
           </button>
-          <button class="remote-button${playingStatusClass}" id="playpause-button" @pointerdown=${this.buttonDown}>
-            <ha-icon icon="mdi:play-pause"></ha-icon>
-          </button>
+          <div></div>
 
           <button class="remote-button" id="rewind-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:rewind"></ha-icon>
           </button>
+          <button class="remote-button${playingStatusClass}" id="playpause-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:play-pause"></ha-icon>
+          </button>
+
           <button class="remote-button" id="fastforward-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:fast-forward"></ha-icon>
+          </button>
+          <button class="remote-button" id="replay-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:replay"></ha-icon>
           </button>
 
           ${drawAppLaunchButtons(this, this._config, 2, appButtonMax["KA1"])}
