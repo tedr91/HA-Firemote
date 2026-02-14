@@ -5556,9 +5556,7 @@ class FiremoteCard extends LitElement {
           ${drawDeviceName(this, this._config, 'top')}
           ${renderKaleidescapeTag()}
 
-          <button class="remote-button${homeStatusClass}" id="home-button" @pointerdown=${this.buttonDown}>
-            <ha-icon icon="mdi:home"></ha-icon>
-          </button>
+          <div></div>
           <button class="remote-button" id="hamburger-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:menu"></ha-icon>
           </button>
