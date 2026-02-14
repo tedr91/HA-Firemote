@@ -1299,7 +1299,6 @@ class FiremoteCard extends LitElement {
             box-shadow: inset 0 0 calc(var(--sz) * 0.35rem) rgb(0 0 0 / 45%);
           }
 
-          .kaleidescape-remote-body #home-button,
           .kaleidescape-remote-body #replay-button {
             border-radius: 100%;
           }
@@ -5557,8 +5556,8 @@ class FiremoteCard extends LitElement {
           ${drawDeviceName(this, this._config, 'top')}
           ${renderKaleidescapeTag()}
 
-          <button class="remote-button${powerStatusClass}" id="power-button" @pointerdown=${this.buttonDown}>
-            <ha-icon icon="mdi:power"></ha-icon>
+          <button class="remote-button${homeStatusClass}" id="home-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:home"></ha-icon>
           </button>
           <button class="remote-button" id="hamburger-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:menu"></ha-icon>
@@ -5577,7 +5576,9 @@ class FiremoteCard extends LitElement {
           <button class="remote-button" id="back-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:arrow-left"></ha-icon>
           </button>
-          <div></div>
+          <button class="remote-button${homeStatusClass}" id="home-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:home"></ha-icon>
+          </button>
 
           <button class="remote-button" id="rewind-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:rewind"></ha-icon>
