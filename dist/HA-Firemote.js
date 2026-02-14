@@ -983,10 +983,10 @@ class FiremoteCard extends LitElement {
             display: grid;
             justify-items: center;
             align-content: flex-start;
-            grid-column-gap: calc(var(--sz) * 1rem);
+            grid-column-gap: calc(var(--sz) * 0.5rem);
             grid-row-gap: calc(var(--sz) * 0.6rem);
-            grid-template-columns: 1fr 1fr;
-            width: calc(var(--sz) * 13rem);
+            grid-template-columns: 1fr 1fr 1fr;
+            width: calc(var(--sz) * 12.286rem);
             min-height: calc(var(--sz) * 48rem);
             padding: calc(var(--sz) * 1.2rem) calc(var(--sz) * 0.6rem) calc(var(--sz) * 1.8rem);
             box-shadow: rgb(0 0 0 / 45%) 0 calc(var(--sz) * 0.35rem) calc(var(--sz) * 1.2rem);
@@ -994,7 +994,7 @@ class FiremoteCard extends LitElement {
 
           .kaleidescapeTag {
             grid-column-start: 1;
-            grid-column-end: 3;
+            grid-column-end: 4;
             color: #d6def2;
             letter-spacing: calc(var(--sz) * 0.06rem);
             font-size: calc(var(--sz) * 0.8rem);
@@ -1268,7 +1268,7 @@ class FiremoteCard extends LitElement {
           }
 
           .kaleidescape-remote-body .dpadContainer {
-            grid-column: 1 / 3;
+            grid-column: 1 / 4;
             width: calc(var(--sz) * 9.2rem);
             height: calc(var(--sz) * 9.2rem);
             margin-bottom: calc(var(--sz) * 0.2rem);
@@ -5556,9 +5556,14 @@ class FiremoteCard extends LitElement {
           ${drawDeviceName(this, this._config, 'top')}
           ${renderKaleidescapeTag()}
 
-          <div></div>
+          <button class="remote-button${homeStatusClass}" id="home-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:home"></ha-icon>
+          </button>
           <button class="remote-button" id="hamburger-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:menu"></ha-icon>
+          </button>
+          <button class="remote-button" id="back-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:arrow-left"></ha-icon>
           </button>
 
           <div class="dpadContainer">
@@ -5571,26 +5576,17 @@ class FiremoteCard extends LitElement {
             </div>
           </div>
 
-          <button class="remote-button" id="back-button" @pointerdown=${this.buttonDown}>
-            <ha-icon icon="mdi:arrow-left"></ha-icon>
-          </button>
-          <button class="remote-button${homeStatusClass}" id="home-button" @pointerdown=${this.buttonDown}>
-            <ha-icon icon="mdi:home"></ha-icon>
-          </button>
-
-          <button class="remote-button${playingStatusClass}" id="playpause-button" @pointerdown=${this.buttonDown}>
-            <ha-icon icon="mdi:play-pause"></ha-icon>
-          </button>
           <button class="remote-button" id="rewind-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:rewind"></ha-icon>
           </button>
-
-          <div></div>
+          <button class="remote-button${playingStatusClass}" id="playpause-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:play-pause"></ha-icon>
+          </button>
           <button class="remote-button" id="fastforward-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:fast-forward"></ha-icon>
           </button>
 
-          ${drawAppLaunchButtons(this, this._config, 2, appButtonMax["KA1"])}
+          ${drawAppLaunchButtons(this, this._config, 3, appButtonMax["KA1"])}
 
           ${drawDeviceName(this, this._config, 'bottom')}
           ${drawFiremoteVersionNumber(this, this._config)}
