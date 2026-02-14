@@ -1271,7 +1271,8 @@ class FiremoteCard extends LitElement {
             grid-column: 1 / 4;
             width: calc(var(--sz) * 9.2rem);
             height: calc(var(--sz) * 9.2rem);
-            margin-bottom: calc(var(--sz) * 0.2rem);
+            margin-top: calc(var(--sz) * 0.5rem);
+            margin-bottom: calc(var(--sz) * 0.5rem);
           }
 
           .kaleidescape-remote-body .directionButtonContainer {
@@ -5556,14 +5557,14 @@ class FiremoteCard extends LitElement {
           ${drawDeviceName(this, this._config, 'top')}
           ${renderKaleidescapeTag()}
 
-          <button class="remote-button${homeStatusClass}" id="home-button" @pointerdown=${this.buttonDown}>
-            <ha-icon icon="mdi:home"></ha-icon>
+          <button class="remote-button" id="back-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:arrow-left"></ha-icon>
           </button>
           <button class="remote-button" id="hamburger-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:menu"></ha-icon>
           </button>
-          <button class="remote-button" id="back-button" @pointerdown=${this.buttonDown}>
-            <ha-icon icon="mdi:arrow-left"></ha-icon>
+          <button class="remote-button${homeStatusClass}" id="home-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:home"></ha-icon>
           </button>
 
           <div class="dpadContainer">
