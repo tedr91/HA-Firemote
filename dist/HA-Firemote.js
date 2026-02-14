@@ -1271,8 +1271,8 @@ class FiremoteCard extends LitElement {
             grid-column: 1 / 4;
             width: calc(var(--sz) * 9.2rem);
             height: calc(var(--sz) * 9.2rem);
-            margin-top: calc(var(--sz) * 0.5rem);
-            margin-bottom: calc(var(--sz) * 0.5rem);
+            margin-top: calc(var(--sz) * 1.5rem);
+            margin-bottom: calc(var(--sz) * 1.5rem);
           }
 
           .kaleidescape-remote-body .directionButtonContainer {
