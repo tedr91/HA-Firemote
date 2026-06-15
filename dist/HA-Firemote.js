@@ -1,9 +1,9 @@
-const HAFiremoteVersion = 'v5.0.0';
+const HAFiremoteVersion = 'v5.0.1';
 
 import {LitElement, html, css, unsafeHTML, unsafeCSS, styleMap} from './lit/lit-all.min.js';
-import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.0";
-import {rosettaStone} from './language-translations.js?version=v5.0.0';
-import {devices} from './supported-devices.js?version=v5.0.0';
+import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.1";
+import {rosettaStone} from './language-translations.js?version=v5.0.1';
+import {devices} from './supported-devices.js?version=v5.0.1';
 
 console.groupCollapsed("%c 🔥 FIREMOTE-CARD 🔥 %c "+HAFiremoteVersion+" installed ", "color: orange; font-weight: bold; background: black", "color: green; font-weight: bold;"),
 console.log("Readme:", "https://github.com/PRProd/HA-Firemote"),
@@ -1325,39 +1325,6 @@ class FiremoteCard extends LitElement {
           .kaleidescape-remote-body .dpadbutton {
             background: transparent;
             outline: none;
-          }
-
-          .kaleidescape-remote-body .dpadbutton::after {
-            content: '▲';
-            display: block;
-            text-align: center;
-            font-size: calc(var(--sz) * 0.7rem);
-            line-height: 1;
-            color: rgba(18, 28, 48, 0.55);
-          }
-
-          .kaleidescape-remote-body .dpadbutton:nth-child(1)::after {
-            transform: rotate(-45deg);
-            padding-right: calc(var(--sz) * 1.4rem);
-            padding-bottom: calc(var(--sz) * 1.4rem);
-          }
-
-          .kaleidescape-remote-body .dpadbutton:nth-child(2)::after {
-            transform: rotate(45deg);
-            padding-left: calc(var(--sz) * 1.4rem);
-            padding-bottom: calc(var(--sz) * 1.4rem);
-          }
-
-          .kaleidescape-remote-body .dpadbutton:nth-child(3)::after {
-            transform: rotate(-135deg);
-            padding-right: calc(var(--sz) * 1.4rem);
-            padding-top: calc(var(--sz) * 1.4rem);
-          }
-
-          .kaleidescape-remote-body .dpadbutton:nth-child(4)::after {
-            transform: rotate(135deg);
-            padding-left: calc(var(--sz) * 1.4rem);
-            padding-top: calc(var(--sz) * 1.4rem);
           }
 
           .kaleidescape-remote-body .dpadbutton:active {
