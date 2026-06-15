@@ -1,9 +1,9 @@
-const HAFiremoteVersion = 'v4.1.10';
+const HAFiremoteVersion = 'v5.0.0';
 
 import {LitElement, html, css, unsafeHTML, unsafeCSS, styleMap} from './lit/lit-all.min.js';
-import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v4.1.10";
-import {rosettaStone} from './language-translations.js?version=v4.1.10';
-import {devices} from './supported-devices.js?version=v4.1.10';
+import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.0";
+import {rosettaStone} from './language-translations.js?version=v5.0.0';
+import {devices} from './supported-devices.js?version=v5.0.0';
 
 console.groupCollapsed("%c 🔥 FIREMOTE-CARD 🔥 %c "+HAFiremoteVersion+" installed ", "color: orange; font-weight: bold; background: black", "color: green; font-weight: bold;"),
 console.log("Readme:", "https://github.com/PRProd/HA-Firemote"),
@@ -236,7 +236,7 @@ class FiremoteCard extends LitElement {
         return calculateMasonryViewHeight(747.5, scale);
         break;
       case "KA1":
-        return calculateMasonryViewHeight(760, scale);
+        return calculateMasonryViewHeight(860, scale);
         break;
       case "AR2":
         return calculateMasonryViewHeight(597, scale);
@@ -334,7 +334,7 @@ class FiremoteCard extends LitElement {
         break;
       case "KA1":
         return {
-          grid_rows: calculateLayoutCellHeight(760, scale),
+          grid_rows: calculateLayoutCellHeight(860, scale),
           grid_columns: calculateLayoutCellWidth(184, scale),
         }
         break;
@@ -435,7 +435,7 @@ class FiremoteCard extends LitElement {
         (eid) => e.entities[eid].platform === 'roku'
     );
     var kaleidescapeEntities = Object.keys(e.entities).filter(
-      (eid) => e.entities[eid].platform === 'kaleidescape'
+      (eid) => e.entities[eid].platform === 'kaleidescape_strato'
     );
     if (androidTVEntities.length > 0) {
         return { 'entity': androidTVEntities[0],
@@ -977,32 +977,59 @@ class FiremoteCard extends LitElement {
           }
 
           .kaleidescape-remote-body {
-            background: linear-gradient(180deg, rgb(20, 26, 40) 0%, rgb(35, 44, 65) 100%);
-            border: solid #53607a calc(var(--sz) * 0.05rem);
-            border-radius: calc(var(--sz) * 2rem);
+            background: linear-gradient(145deg, rgb(46, 46, 50) 0%, rgb(34, 34, 38) 45%, rgb(22, 22, 26) 100%);
+            border: solid #14141a calc(var(--sz) * 0.06rem);
+            border-radius: calc(var(--sz) * 2.1rem);
             display: grid;
             justify-items: center;
             align-content: flex-start;
-            grid-column-gap: calc(var(--sz) * 0.5rem);
-            grid-row-gap: calc(var(--sz) * 0.6rem);
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-column-gap: calc(var(--sz) * 0.55rem);
+            grid-row-gap: calc(var(--sz) * 0.8rem);
+            grid-template-columns: 1fr 1fr;
             width: calc(var(--sz) * 12.286rem);
-            min-height: calc(var(--sz) * 48rem);
-            padding: calc(var(--sz) * 1.2rem) calc(var(--sz) * 0.6rem) calc(var(--sz) * 1.8rem);
-            box-shadow: rgb(0 0 0 / 45%) 0 calc(var(--sz) * 0.35rem) calc(var(--sz) * 1.2rem);
+            min-height: calc(var(--sz) * 43rem);
+            padding: calc(var(--sz) * 1.4rem) calc(var(--sz) * 0.85rem) calc(var(--sz) * 1.8rem);
+            box-shadow: rgb(0 0 0 / 55%) 0 calc(var(--sz) * 0.5rem) calc(var(--sz) * 1.6rem), inset 0 calc(var(--sz) * 0.08rem) 0 rgb(255 255 255 / 7%);
           }
 
-          .kaleidescapeTag {
-            grid-column-start: 1;
-            grid-column-end: 4;
-            color: #d6def2;
-            letter-spacing: calc(var(--sz) * 0.06rem);
-            font-size: calc(var(--sz) * 0.8rem);
-            text-transform: uppercase;
-            padding: calc(var(--sz) * 0.2rem) calc(var(--sz) * 0.5rem);
-            border: solid rgb(214 222 242 / 35%) calc(var(--sz) * 0.05rem);
-            border-radius: calc(var(--sz) * 0.7rem);
-            background: rgb(4 10 24 / 30%);
+          .kaleidescapeLogo {
+            grid-column: 1 / 3;
+            display: grid;
+            justify-items: center;
+            row-gap: calc(var(--sz) * 0.35rem);
+            margin-top: calc(var(--sz) * 0.9rem);
+            padding: calc(var(--sz) * 0.2rem) 0;
+          }
+
+          .kaleidescapeLogo svg {
+            width: calc(var(--sz) * 2.6rem);
+            height: calc(var(--sz) * 2.6rem);
+            display: block;
+          }
+
+          .kaleidescapeWordmark {
+            color: #c9cdd6;
+            letter-spacing: calc(var(--sz) * 0.12rem);
+            font-size: calc(var(--sz) * 0.82rem);
+            text-transform: lowercase;
+            font-weight: 400;
+          }
+
+          .kaleidescape-remote-body .activityLight {
+            grid-column: 1 / 3;
+            justify-self: center;
+            margin-bottom: calc(var(--sz) * 0.2rem);
+            background: #141414;
+            border-radius: 100%;
+            height: calc(var(--sz) * 0.42rem);
+            aspect-ratio: 1 / 1;
+            opacity: 0;
+          }
+
+          .kaleidescape-remote-body .activityLight.ledOn {
+            opacity: 1;
+            background: #38e06b;
+            box-shadow: #38e06b 0 0 calc(var(--sz) * 0.6rem) calc(var(--sz) * 0.05rem);
           }
 
           .AR2TopSection, .AR2BottomSection {
@@ -1254,54 +1281,102 @@ class FiremoteCard extends LitElement {
           }
 
           .kaleidescape-remote-body .remote-button {
-            height: calc(var(--sz) * 3.9rem);
-            width: calc(var(--sz) * 3.9rem);
-            border-radius: calc(var(--sz) * 0.9rem);
-            border-color: #1a2030;
-            background: linear-gradient(180deg, #3f4d6c 0%, #303d56 100%);
-            color: #f4f7ff;
-            box-shadow: rgb(0 0 0 / 20%) 0 calc(var(--sz) * 0.2rem) calc(var(--sz) * 0.25rem) 0;
+            height: calc(var(--sz) * 2.95rem);
+            width: calc(var(--sz) * 5rem);
+            border-radius: calc(var(--sz) * 0.85rem);
+            border: solid #131318 calc(var(--sz) * 0.05rem);
+            background: linear-gradient(180deg, #3c3c42 0%, #2c2c31 100%);
+            color: #f4f5f7;
+            box-shadow: rgb(0 0 0 / 38%) 0 calc(var(--sz) * 0.18rem) calc(var(--sz) * 0.3rem) 0, inset 0 calc(var(--sz) * 0.07rem) 0 rgb(255 255 255 / 9%);
+            transition: background 0.08s ease-out, box-shadow 0.08s ease-out;
           }
 
           .kaleidescape-remote-body .remote-button:active {
-            background: #2f3b54;
+            background: linear-gradient(180deg, #2a2a2f 0%, #232327 100%);
+            box-shadow: inset 0 calc(var(--sz) * 0.14rem) calc(var(--sz) * 0.3rem) rgb(0 0 0 / 55%);
+          }
+
+          .kaleidescape-remote-body #power-button {
+            justify-self: end;
+          }
+
+          .kaleidescape-remote-body .centerSpan {
+            grid-column: 1 / 3;
+            justify-self: center;
           }
 
           .kaleidescape-remote-body .dpadContainer {
-            grid-column: 1 / 4;
-            width: calc(var(--sz) * 9.2rem);
-            height: calc(var(--sz) * 9.2rem);
-            margin-top: calc(var(--sz) * 1.5rem);
-            margin-bottom: calc(var(--sz) * 1.5rem);
+            grid-column: 1 / 3;
+            width: calc(var(--sz) * 11.3rem);
+            height: calc(var(--sz) * 11.3rem);
+            margin-top: calc(var(--sz) * 0.6rem);
+            margin-bottom: calc(var(--sz) * 0.6rem);
           }
 
           .kaleidescape-remote-body .directionButtonContainer {
             place-self: center;
-            border-color: #1f293b;
-            box-shadow: rgb(0 0 0 / 30%) 0 calc(var(--sz) * 0.12rem) calc(var(--sz) * 0.36rem);
+            border: calc(var(--sz) * 0.0714rem) solid #1c1c22;
+            background:
+              conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0.10), rgba(0,0,0,0.12) 25%, rgba(255,255,255,0.10) 50%, rgba(0,0,0,0.12) 75%, rgba(255,255,255,0.10) 100%),
+              radial-gradient(circle at 50% 36%, #6189bd 0%, #41699c 45%, #324f78 100%);
+            box-shadow: rgb(0 0 0 / 55%) 0 calc(var(--sz) * 0.18rem) calc(var(--sz) * 0.5rem), inset 0 calc(var(--sz) * 0.1rem) calc(var(--sz) * 0.2rem) rgb(255 255 255 / 12%);
           }
 
           .kaleidescape-remote-body .dpadbutton {
-            background: #28344c;
-            outline: solid #1f293b calc(var(--sz) * 0.0714rem);
+            background: transparent;
+            outline: none;
+          }
+
+          .kaleidescape-remote-body .dpadbutton::after {
+            content: '▲';
+            display: block;
+            text-align: center;
+            font-size: calc(var(--sz) * 0.7rem);
+            line-height: 1;
+            color: rgba(18, 28, 48, 0.55);
+          }
+
+          .kaleidescape-remote-body .dpadbutton:nth-child(1)::after {
+            transform: rotate(-45deg);
+            padding-right: calc(var(--sz) * 1.4rem);
+            padding-bottom: calc(var(--sz) * 1.4rem);
+          }
+
+          .kaleidescape-remote-body .dpadbutton:nth-child(2)::after {
+            transform: rotate(45deg);
+            padding-left: calc(var(--sz) * 1.4rem);
+            padding-bottom: calc(var(--sz) * 1.4rem);
+          }
+
+          .kaleidescape-remote-body .dpadbutton:nth-child(3)::after {
+            transform: rotate(-135deg);
+            padding-right: calc(var(--sz) * 1.4rem);
+            padding-top: calc(var(--sz) * 1.4rem);
+          }
+
+          .kaleidescape-remote-body .dpadbutton:nth-child(4)::after {
+            transform: rotate(135deg);
+            padding-left: calc(var(--sz) * 1.4rem);
+            padding-top: calc(var(--sz) * 1.4rem);
           }
 
           .kaleidescape-remote-body .dpadbutton:active {
-            background: #243046;
+            background: rgba(0, 0, 0, 0.18);
           }
 
           .kaleidescape-remote-body .centerbutton {
-            width: calc(var(--sz) * 4.85rem);
-            height: calc(var(--sz) * 4.85rem);
-            margin: 0;
-            place-self: center;
-            border-radius: calc(var(--sz) * 0.75rem);
-            background: linear-gradient(180deg, #3d4b69 0%, #2f3b55 100%);
-            box-shadow: inset 0 0 calc(var(--sz) * 0.35rem) rgb(0 0 0 / 45%);
+            width: calc(var(--sz) * 4.6rem);
+            height: calc(var(--sz) * 4.6rem);
+            margin-left: calc(var(--sz) * 3.35rem);
+            margin-top: calc(var(--sz) * 3.35rem);
+            border: solid #0e0e12 calc(var(--sz) * 0.0714rem);
+            border-radius: 100%;
+            background: radial-gradient(circle at 50% 38%, #2c2c31 0%, #1b1b1f 70%, #131316 100%);
+            box-shadow: inset 0 calc(var(--sz) * 0.2rem) calc(var(--sz) * 0.4rem) rgb(0 0 0 / 75%), 0 calc(var(--sz) * 0.05rem) calc(var(--sz) * 0.15rem) rgb(255 255 255 / 8%);
           }
 
-          .kaleidescape-remote-body #replay-button {
-            border-radius: 100%;
+          .kaleidescape-remote-body .centerbutton:active {
+            box-shadow: inset 0 calc(var(--sz) * 0.28rem) calc(var(--sz) * 0.5rem) rgb(0 0 0 / 85%);
           }
 
           .apple-remote-body.AR2 .remote-button {
@@ -3661,6 +3736,12 @@ class FiremoteCard extends LitElement {
         }
     }
 
+    // Kaleidescape status LED state (always reflects power, independent of hide_button_highlights)
+    var kaleidescapeLedClass = '';
+    if(stateStr != 'off' && stateStr != 'unavailable' && stateStr != 'standby') {
+      kaleidescapeLedClass = ' ledOn';
+    }
+
     // Get current device's Attributes AND use any applicable overrides from user conf
     var confRef = this._config;
     function getDeviceAttribute(deviceAttribute){
@@ -3978,8 +4059,33 @@ class FiremoteCard extends LitElement {
       return html`<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 281 46" width="281" height="46" xml:space="preserve" class="remote-logo xiaomiLogo"><path style="stroke:none;stroke-width:1;stroke-dasharray:none;stroke-linecap:butt;stroke-dashoffset:0;stroke-linejoin:miter;stroke-miterlimit:4;fill:#000;fill-rule:nonzero;opacity:1" transform="translate(.5 .5)" d="M158.12.7c-6.42 0-12.86.81-16.92 4.81s-5.64 10-5.64 17.38S137 36.16 141 40.16s10.66 5 17.08 5 12.86-.86 16.92-4.86 5.67-10 5.67-17.41-1.43-13.24-5.49-17.23S164.55.7 158.12.7zm9.75 32.82c-2.27 2.58-6.37 3-9.75 3s-7.47-.45-9.74-3S146 27.38 146 22.9s.15-7.95 2.41-10.54 5.9-3 9.74-3 7.48.45 9.74 3 2.41 6.05 2.41 10.54-.17 8.03-2.43 10.62zM69.1 1.49H60a.69.69 0 0 0-.7.69v41.49a.69.69 0 0 0 .7.69h9.1a.7.7 0 0 0 .7-.69V2.18a.7.7 0 0 0-.7-.69zM30.87 22.57 47 2.57a.66.66 0 0 0-.52-1.08H34.87a.9.9 0 0 0-.71.35L23.48 16 13.07 1.85a.9.9 0 0 0-.71-.36H.68a.66.66 0 0 0-.52 1.08l16.35 20.37L.14 43.29a.66.66 0 0 0 .52 1.07h11.68a.9.9 0 0 0 .72-.37L24 29.89 34.29 44a.91.91 0 0 0 .72.36h11.53a.66.66 0 0 0 .52-1.07zM252.33 4.64c-3.7-3.44-9.65-3.86-14.46-3.86-6.22 0-10.18 1.32-12.58 2.56h-1.67c-2.35-1.3-6.49-2.56-13-2.56-4.82 0-10.72.35-14.36 3.41-3 2.52-3.71 5.89-3.71 12.79v26.67a.7.7 0 0 0 .71.69h9.09a.7.7 0 0 0 .71-.69V21.7c0-4-.15-8.08.7-9.62.67-1.2 1.71-2.53 6.65-2.53 5.89 0 7.28.41 8.21 3a9.37 9.37 0 0 1 .38 2.56v28.54a.69.69 0 0 0 .7.69h9.09a.7.7 0 0 0 .71-.69V15.13a9.37 9.37 0 0 1 .38-2.56c.93-2.61 2.31-3 8.2-3 4.94 0 6 1.33 6.65 2.53.86 1.54.7 5.66.7 9.62v22a.7.7 0 0 0 .71.69h9.09a.7.7 0 0 0 .7-.69v-25c0-7.28-.23-10.95-3.6-14.08zM121.82 7.18C117.62 1.39 110-.36 102.14.06a56 56 0 0 0-15 2.66c-.88.33-.77 1.09-.78 1.55 0 1.53-.15 5.49-.14 7.1 0 .71.87 1 1.6.78a56.6 56.6 0 0 1 12.62-3c4.67-.38 11 0 12.76 2.65.83 1.26.87 3.19 1 5.16a78.77 78.77 0 0 0-11.51-.4c-3.35.15-9.69.44-13.5 2.44-3.06 1.63-4.86 3.11-5.82 5.87a17 17 0 0 0-.73 7.06c.56 5 2.28 7.43 4.61 9.15 3.67 2.72 8.31 4.15 17.89 3.94 12.75-.28 16.1-4.4 17.79-7.33 2.88-5 2.38-12.85 2.29-17.68-.03-2.01-.33-8.59-3.4-12.83zm-8.31 26.17c-1.2 2.53-5.49 2.92-8 3-4.7.21-8.16 0-10.4-1.08A5.12 5.12 0 0 1 92.4 31c-.08-1.63-.05-2.46.68-3.43 1.66-2.15 6-2.61 10.41-2.78a78.94 78.94 0 0 1 10.94.63c-.03 3.24-.24 6.5-.92 7.93zM280.17 1.49h-9.09a.7.7 0 0 0-.71.69v41.49a.7.7 0 0 0 .71.69h9.09a.7.7 0 0 0 .71-.69V2.18a.7.7 0 0 0-.71-.69z"/></svg>`;
     }
 
-    function renderKaleidescapeTag() {
-      return html`<div class="kaleidescapeTag">Kaleidescape</div>`;
+    function renderKaleidescapeLogo() {
+      return html`
+        <div class="kaleidescapeLogo">
+          <svg viewBox="0 0 24 24" fill-rule="evenodd" aria-hidden="true">
+            <path d="M1.36 17.58L5.46 15.21L1.36 12.85Z" fill="#ffb612"></path>
+            <path d="M1.36 11.15L5.46 8.79L1.36 6.42Z" fill="#739abc"></path>
+            <path d="M1.85 18.42L5.95 20.79L5.95 16.06Z" fill="#739abc"></path>
+            <path d="M1.85 12L5.95 14.36L5.95 9.64Z" fill="#165788"></path>
+            <path d="M1.85 5.58L5.95 7.94L5.95 3.21Z" fill="#165788"></path>
+            <path d="M6.93 14.36L11.02 12L6.93 9.64Z" fill="#165788"></path>
+            <path d="M6.93 7.94L11.02 5.58L6.93 3.21Z" fill="#165788"></path>
+            <path d="M7.42 21.64L11.51 24L11.51 19.27Z" fill="#739abc"></path>
+            <path d="M7.42 15.21L11.51 17.58L11.51 12.85Z" fill="#739abc"></path>
+            <path d="M7.42 8.79L11.51 11.15L11.51 6.42Z" fill="#ffb612"></path>
+            <path d="M12.49 24L16.58 21.64L12.49 19.27Z" fill="#739abc"></path>
+            <path d="M12.49 17.58L16.58 15.21L12.49 12.85Z" fill="#739abc"></path>
+            <path d="M12.49 11.15L16.58 8.79L12.49 6.42Z" fill="#739abc"></path>
+            <path d="M12.49 4.73L16.58 2.36L12.49 0Z" fill="#165788"></path>
+            <path d="M12.98 18.42L17.07 20.79L17.07 16.06Z" fill="#165788"></path>
+            <path d="M12.98 5.58L17.07 7.94L17.07 3.21Z" fill="#739abc"></path>
+            <path d="M18.05 20.79L22.15 18.42L18.05 16.06Z" fill="#ffb612"></path>
+            <path d="M18.05 7.94L22.15 5.58L18.05 3.21Z" fill="#165788"></path>
+            <path d="M18.54 15.21L22.64 17.58L22.64 12.85Z" fill="#165788"></path>
+            <path d="M18.54 8.79L22.64 11.15L22.64 6.42Z" fill="#165788"></path>
+          </svg>
+          <span class="kaleidescapeWordmark">kaleidescape</span>
+        </div>`;
     }
 
     // Render Amazon Fire Remote Style AF1
@@ -5554,17 +5660,19 @@ class FiremoteCard extends LitElement {
       ${cssVars}
 
       <div class="kaleidescape-remote-body KA1">
+          <div class="activityLight${kaleidescapeLedClass}"></div>
           ${drawDeviceName(this, this._config, 'top')}
-          ${renderKaleidescapeTag()}
+
+          <div></div>
+          <button class="remote-button${powerStatusClass}" id="power-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:power"></ha-icon>
+          </button>
 
           <button class="remote-button" id="back-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:arrow-left"></ha-icon>
           </button>
-          <button class="remote-button" id="hamburger-button" @pointerdown=${this.buttonDown}>
+          <button class="remote-button" id="menu-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:menu"></ha-icon>
-          </button>
-          <button class="remote-button${homeStatusClass}" id="home-button" @pointerdown=${this.buttonDown}>
-            <ha-icon icon="mdi:home"></ha-icon>
           </button>
 
           <div class="dpadContainer">
@@ -5577,18 +5685,27 @@ class FiremoteCard extends LitElement {
             </div>
           </div>
 
+          <button class="remote-button" id="skip-previous-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:skip-previous"></ha-icon>
+          </button>
+          <button class="remote-button" id="skip-next-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:skip-next"></ha-icon>
+          </button>
+
+          <button class="remote-button centerSpan${playingStatusClass}" id="playpause-button" @pointerdown=${this.buttonDown}>
+            <ha-icon icon="mdi:play-pause"></ha-icon>
+          </button>
+
           <button class="remote-button" id="rewind-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:rewind"></ha-icon>
-          </button>
-          <button class="remote-button${playingStatusClass}" id="playpause-button" @pointerdown=${this.buttonDown}>
-            <ha-icon icon="mdi:play-pause"></ha-icon>
           </button>
           <button class="remote-button" id="fastforward-button" @pointerdown=${this.buttonDown}>
             <ha-icon icon="mdi:fast-forward"></ha-icon>
           </button>
 
-          ${drawAppLaunchButtons(this, this._config, 3, appButtonMax["KA1"])}
+          ${drawAppLaunchButtons(this, this._config, 2, appButtonMax["KA1"])}
 
+          ${renderKaleidescapeLogo()}
           ${drawDeviceName(this, this._config, 'bottom')}
           ${drawFiremoteVersionNumber(this, this._config)}
 
@@ -5955,12 +6072,27 @@ class FiremoteCard extends LitElement {
     var pressedTarget = clicked.target;
     var timer = null;
 
+    function flashKaleidescapeLed(color, ms) {
+      if (!activityLight) { return; }
+      if (activityLight._ledTimer) { clearTimeout(activityLight._ledTimer); }
+      activityLight.style.background = color;
+      activityLight.style.opacity = '1';
+      activityLight.style.boxShadow = color + ' 0 0 calc(var(--sz) * 0.6rem) calc(var(--sz) * 0.05rem)';
+      activityLight._ledTimer = setTimeout(function() {
+        activityLight.style.background = '';
+        activityLight.style.opacity = '';
+        activityLight.style.boxShadow = '';
+        activityLight._ledTimer = null;
+      }, ms);
+    }
+
     function sendKaleidescapeRemoteCommand(command, hold_secs = 0) {
       if (!kaleidescapeRemoteEntity) {
         unsupportedButton();
         return false;
       }
-      _hass.callService("remote", "send_command", { entity_id: kaleidescapeRemoteEntity, command: command, num_repeats: 1, delay_secs: 0, hold_secs: hold_secs });
+      Promise.resolve(_hass.callService("remote", "send_command", { entity_id: kaleidescapeRemoteEntity, command: command, num_repeats: 1, delay_secs: 0, hold_secs: hold_secs }))
+        .catch(function() { flashKaleidescapeLed('#ff3030', 400); });
       return true;
     }
 
@@ -5969,10 +6101,12 @@ class FiremoteCard extends LitElement {
         const state = _hass.states[entity];
         const stateStr = state ? state.state : 'off';
         if(stateStr != 'off' && stateStr != 'unavailable' && stateStr != 'standby') {
-          _hass.callService("media_player", "turn_off", { entity_id: entity});
+          Promise.resolve(_hass.callService("media_player", "turn_off", { entity_id: entity}))
+            .catch(function() { flashKaleidescapeLed('#ff3030', 400); });
         }
         else {
-          _hass.callService("media_player", "turn_on", { entity_id: entity});
+          Promise.resolve(_hass.callService("media_player", "turn_on", { entity_id: entity}))
+            .catch(function() { flashKaleidescapeLed('#ff3030', 400); });
         }
         return true;
       }
@@ -5983,13 +6117,22 @@ class FiremoteCard extends LitElement {
       if (buttonID == 'down-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('down'); }
       if (buttonID == 'center-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('select'); }
       if (buttonID == 'back-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('cancel'); }
-      if (buttonID == 'home-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('go_movie_covers'); }
-      if (buttonID == 'hamburger-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('menu_toggle'); }
-      if (buttonID == 'rewind-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('scan_reverse'); }
-      if (buttonID == 'fastforward-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('scan_forward'); }
-      if (buttonID == 'replay-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('replay'); }
+      if (buttonID == 'menu-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('kaleidescape_menu_toggle'); }
+      if (buttonID == 'rewind-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('rewind'); }
+      if (buttonID == 'fastforward-button' && actionType == 'click') { return sendKaleidescapeRemoteCommand('fast_forward'); }
+      if (buttonID == 'skip-previous-button' && actionType == 'click') {
+        Promise.resolve(_hass.callService("media_player", "media_previous_track", { entity_id: entity}))
+          .catch(function() { flashKaleidescapeLed('#ff3030', 400); });
+        return true;
+      }
+      if (buttonID == 'skip-next-button' && actionType == 'click') {
+        Promise.resolve(_hass.callService("media_player", "media_next_track", { entity_id: entity}))
+          .catch(function() { flashKaleidescapeLed('#ff3030', 400); });
+        return true;
+      }
       if (buttonID == 'playpause-button' && actionType == 'click') {
-        _hass.callService("media_player", "media_play_pause", { entity_id: entity});
+        Promise.resolve(_hass.callService("media_player", "media_play_pause", { entity_id: entity}))
+          .catch(function() { flashKaleidescapeLed('#ff3030', 400); });
         return true;
       }
 
@@ -6014,12 +6157,12 @@ class FiremoteCard extends LitElement {
       }
 
       if (buttonID == 'rewind-button' && actionType == 'hold') {
-        if (!sendKaleidescapeRemoteCommand('scan_reverse')) {
+        if (!sendKaleidescapeRemoteCommand('rewind')) {
           return true;
         }
         clicked.target.addEventListener("pointerup", rls, true);
         let rpt = setInterval(function() {
-          sendKaleidescapeRemoteCommand('scan_reverse');
+          sendKaleidescapeRemoteCommand('rewind');
         }, 250);
         function rls() {
           clearInterval(rpt);
@@ -6028,12 +6171,12 @@ class FiremoteCard extends LitElement {
       }
 
       if (buttonID == 'fastforward-button' && actionType == 'hold') {
-        if (!sendKaleidescapeRemoteCommand('scan_forward')) {
+        if (!sendKaleidescapeRemoteCommand('fast_forward')) {
           return true;
         }
         clicked.target.addEventListener("pointerup", rls, true);
         let rpt = setInterval(function() {
-          sendKaleidescapeRemoteCommand('scan_forward');
+          sendKaleidescapeRemoteCommand('fast_forward');
         }, 250);
         function rls() {
           clearInterval(rpt);
@@ -6297,8 +6440,14 @@ class FiremoteCard extends LitElement {
 
         // Flash activity light if it exists
         if (activityLight) {
-          activityLight.style.opacity = '1';
-          setTimeout(function() {activityLight.style.opacity = '0'}, 100);
+          if (deviceFamily == 'kaleidescape') {
+            // Kaleidescape uses a persistent status LED; flash orange then revert to resting state
+            flashKaleidescapeLed('#ff9b21', 120);
+          }
+          else {
+            activityLight.style.opacity = '1';
+            setTimeout(function() {activityLight.style.opacity = '0'}, 100);
+          }
         }
 
         // provide haptic feedback for button press
@@ -8382,7 +8531,7 @@ class FiremoteCardEditor extends LitElement {
         this.translateToUsrLang('Entity') + ' Roku Media Player' : 'Roku Media Player '+ this.translateToUsrLang('Entity');
     }
     else if(this._config.device_family == 'kaleidescape') {
-      mediaPlayerEntities = this.getMediaPlayerEntitiesByPlatform('kaleidescape');
+      mediaPlayerEntities = this.getMediaPlayerEntitiesByPlatform('kaleidescape_strato');
       heading = this.hass.config.language == 'he' || this.hass.config.language == 'fr' ?
         this.translateToUsrLang('Entity') + ' Kaleidescape Media Player' : 'Kaleidescape Media Player '+ this.translateToUsrLang('Entity');
     }
@@ -8476,7 +8625,7 @@ class FiremoteCardEditor extends LitElement {
         if(this._config.kaleidescape_remote_entity == '' || typeof this._config.kaleidescape_remote_entity == 'undefined') {
             blankRemoteEntity = html `<option value="" selected> - - - - </option> `;
         }
-        remoteEntities = this.getRemoteEntitiesByPlatform('kaleidescape');
+        remoteEntities = this.getRemoteEntitiesByPlatform('kaleidescape_strato');
         return html`
               ${dropdownLabel}:<br>
               <select name="kaleidescape_remote_entity" id="kaleidescape_remote_entity" style="padding: .6em; font-size: 1em;" .value=${optionValue}
