@@ -1,9 +1,9 @@
-const HAFiremoteVersion = 'v5.0.5';
+const HAFiremoteVersion = 'v5.0.6';
 
 import {LitElement, html, css, unsafeHTML, unsafeCSS, styleMap} from './lit/lit-all.min.js';
-import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.5";
-import {rosettaStone} from './language-translations.js?version=v5.0.5';
-import {devices} from './supported-devices.js?version=v5.0.5';
+import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.6";
+import {rosettaStone} from './language-translations.js?version=v5.0.6';
+import {devices} from './supported-devices.js?version=v5.0.6';
 
 console.groupCollapsed("%c 🔥 FIREMOTE-CARD 🔥 %c "+HAFiremoteVersion+" installed ", "color: orange; font-weight: bold; background: black", "color: green; font-weight: bold;"),
 console.log("Readme:", "https://github.com/PRProd/HA-Firemote"),
@@ -490,6 +490,8 @@ class FiremoteCard extends LitElement {
             padding: 0;
             margin: auto;
             box-shadow: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
             border: 0;
             outline: 0;
             isolation: isolate;
