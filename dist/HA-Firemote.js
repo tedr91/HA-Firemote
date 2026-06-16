@@ -1,9 +1,9 @@
-const HAFiremoteVersion = 'v5.0.3';
+const HAFiremoteVersion = 'v5.0.4';
 
 import {LitElement, html, css, unsafeHTML, unsafeCSS, styleMap} from './lit/lit-all.min.js';
-import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.3";
-import {rosettaStone} from './language-translations.js?version=v5.0.3';
-import {devices} from './supported-devices.js?version=v5.0.3';
+import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.4";
+import {rosettaStone} from './language-translations.js?version=v5.0.4';
+import {devices} from './supported-devices.js?version=v5.0.4';
 
 console.groupCollapsed("%c 🔥 FIREMOTE-CARD 🔥 %c "+HAFiremoteVersion+" installed ", "color: orange; font-weight: bold; background: black", "color: green; font-weight: bold;"),
 console.log("Readme:", "https://github.com/PRProd/HA-Firemote"),
@@ -1019,17 +1019,20 @@ class FiremoteCard extends LitElement {
             grid-column: 1 / 3;
             justify-self: center;
             margin-bottom: calc(var(--sz) * 0.2rem);
-            background: #141414;
-            border-radius: 100%;
-            height: calc(var(--sz) * 0.42rem);
-            aspect-ratio: 1 / 1;
-            opacity: 0;
+            width: calc(var(--sz) * 1.15rem);
+            height: calc(var(--sz) * 0.3rem);
+            border-radius: calc(var(--sz) * 0.15rem);
+            background: linear-gradient(180deg, #0b0b0d 0%, #18181b 100%);
+            box-shadow: inset 0 calc(var(--sz) * 0.05rem) calc(var(--sz) * 0.07rem) rgba(0, 0, 0, 0.85),
+                        0 calc(var(--sz) * 0.02rem) 0 rgba(255, 255, 255, 0.06);
+            opacity: 1;
           }
 
           .kaleidescape-remote-body .activityLight.ledOn {
             opacity: 1;
             background: #38e06b;
-            box-shadow: #38e06b 0 0 calc(var(--sz) * 0.6rem) calc(var(--sz) * 0.05rem);
+            box-shadow: inset 0 calc(var(--sz) * 0.04rem) calc(var(--sz) * 0.06rem) rgba(255, 255, 255, 0.35),
+                        #38e06b 0 0 calc(var(--sz) * 0.55rem) calc(var(--sz) * 0.05rem);
           }
 
           .AR2TopSection, .AR2BottomSection {
