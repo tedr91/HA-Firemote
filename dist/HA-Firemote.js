@@ -1,9 +1,9 @@
-const HAFiremoteVersion = 'v5.0.2';
+const HAFiremoteVersion = 'v5.0.3';
 
 import {LitElement, html, css, unsafeHTML, unsafeCSS, styleMap} from './lit/lit-all.min.js';
-import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.2";
-import {rosettaStone} from './language-translations.js?version=v5.0.2';
-import {devices} from './supported-devices.js?version=v5.0.2';
+import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.3";
+import {rosettaStone} from './language-translations.js?version=v5.0.3';
+import {devices} from './supported-devices.js?version=v5.0.3';
 
 console.groupCollapsed("%c 🔥 FIREMOTE-CARD 🔥 %c "+HAFiremoteVersion+" installed ", "color: orange; font-weight: bold; background: black", "color: green; font-weight: bold;"),
 console.log("Readme:", "https://github.com/PRProd/HA-Firemote"),
@@ -988,7 +988,7 @@ class FiremoteCard extends LitElement {
             grid-template-columns: 1fr 1fr;
             width: calc(var(--sz) * 12.286rem);
             min-height: calc(var(--sz) * 43rem);
-            padding: calc(var(--sz) * 1.4rem) calc(var(--sz) * 1.00rem) calc(var(--sz) * 1.8rem);
+            padding: calc(var(--sz) * 1.4rem) calc(var(--sz) * 1.20rem) calc(var(--sz) * 1.8rem);
             box-shadow: rgb(0 0 0 / 55%) 0 calc(var(--sz) * 0.5rem) calc(var(--sz) * 1.6rem), inset 0 calc(var(--sz) * 0.08rem) 0 rgb(255 255 255 / 7%);
           }
 
@@ -997,7 +997,7 @@ class FiremoteCard extends LitElement {
             display: grid;
             justify-items: center;
             row-gap: calc(var(--sz) * 0.35rem);
-            margin-top: calc(var(--sz) * 3.6rem);
+            margin-top: calc(var(--sz) * 5.0rem);
             padding: calc(var(--sz) * 0.2rem) 0;
           }
 
