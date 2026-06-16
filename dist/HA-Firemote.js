@@ -1,9 +1,9 @@
-const HAFiremoteVersion = 'v5.0.1';
+const HAFiremoteVersion = 'v5.0.2';
 
 import {LitElement, html, css, unsafeHTML, unsafeCSS, styleMap} from './lit/lit-all.min.js';
-import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.1";
-import {rosettaStone} from './language-translations.js?version=v5.0.1';
-import {devices} from './supported-devices.js?version=v5.0.1';
+import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.2";
+import {rosettaStone} from './language-translations.js?version=v5.0.2';
+import {devices} from './supported-devices.js?version=v5.0.2';
 
 console.groupCollapsed("%c 🔥 FIREMOTE-CARD 🔥 %c "+HAFiremoteVersion+" installed ", "color: orange; font-weight: bold; background: black", "color: green; font-weight: bold;"),
 console.log("Readme:", "https://github.com/PRProd/HA-Firemote"),
@@ -988,7 +988,7 @@ class FiremoteCard extends LitElement {
             grid-template-columns: 1fr 1fr;
             width: calc(var(--sz) * 12.286rem);
             min-height: calc(var(--sz) * 43rem);
-            padding: calc(var(--sz) * 1.4rem) calc(var(--sz) * 0.85rem) calc(var(--sz) * 1.8rem);
+            padding: calc(var(--sz) * 1.4rem) calc(var(--sz) * 1.00rem) calc(var(--sz) * 1.8rem);
             box-shadow: rgb(0 0 0 / 55%) 0 calc(var(--sz) * 0.5rem) calc(var(--sz) * 1.6rem), inset 0 calc(var(--sz) * 0.08rem) 0 rgb(255 255 255 / 7%);
           }
 
@@ -997,13 +997,13 @@ class FiremoteCard extends LitElement {
             display: grid;
             justify-items: center;
             row-gap: calc(var(--sz) * 0.35rem);
-            margin-top: calc(var(--sz) * 0.9rem);
+            margin-top: calc(var(--sz) * 3.6rem);
             padding: calc(var(--sz) * 0.2rem) 0;
           }
 
           .kaleidescapeLogo svg {
-            width: calc(var(--sz) * 2.6rem);
-            height: calc(var(--sz) * 2.6rem);
+            width: calc(var(--sz) * 3.64rem);
+            height: calc(var(--sz) * 3.64rem);
             display: block;
           }
 
@@ -1281,13 +1281,13 @@ class FiremoteCard extends LitElement {
           }
 
           .kaleidescape-remote-body .remote-button {
-            height: calc(var(--sz) * 2.95rem);
-            width: calc(var(--sz) * 5rem);
-            border-radius: calc(var(--sz) * 0.85rem);
-            border: solid #131318 calc(var(--sz) * 0.05rem);
+            height: calc(var(--sz) * 2.5rem);
+            width: calc(var(--sz) * 3.825rem);
+            border-radius: calc(var(--sz) * 0.5rem);
+            border: solid #101015 calc(var(--sz) * 0.06rem);
             background: linear-gradient(180deg, #3c3c42 0%, #2c2c31 100%);
             color: #f4f5f7;
-            box-shadow: rgb(0 0 0 / 38%) 0 calc(var(--sz) * 0.18rem) calc(var(--sz) * 0.3rem) 0, inset 0 calc(var(--sz) * 0.07rem) 0 rgb(255 255 255 / 9%);
+            box-shadow: rgb(0 0 0 / 48%) 0 calc(var(--sz) * 0.11rem) calc(var(--sz) * 0.16rem) 0, inset 0 calc(var(--sz) * 0.05rem) 0 rgb(255 255 255 / 7%);
             transition: background 0.08s ease-out, box-shadow 0.08s ease-out;
           }
 
@@ -1298,6 +1298,32 @@ class FiremoteCard extends LitElement {
 
           .kaleidescape-remote-body #power-button {
             justify-self: end;
+            width: calc(var(--sz) * 2.5rem);
+            height: calc(var(--sz) * 2.5rem);
+            margin-top: calc(var(--sz) * -1.7rem);
+            margin-bottom: calc(var(--sz) * 0.8rem);
+          }
+
+          .kaleidescape-remote-body #back-button,
+          .kaleidescape-remote-body #skip-previous-button,
+          .kaleidescape-remote-body #rewind-button {
+            justify-self: start;
+          }
+
+          .kaleidescape-remote-body #menu-button,
+          .kaleidescape-remote-body #skip-next-button,
+          .kaleidescape-remote-body #fastforward-button {
+            justify-self: end;
+          }
+
+          .kaleidescape-remote-body #back-button,
+          .kaleidescape-remote-body #menu-button,
+          .kaleidescape-remote-body #skip-previous-button,
+          .kaleidescape-remote-body #skip-next-button,
+          .kaleidescape-remote-body #rewind-button,
+          .kaleidescape-remote-body #fastforward-button {
+            margin-top: calc(var(--sz) * -0.35rem);
+            margin-bottom: calc(var(--sz) * -0.35rem);
           }
 
           .kaleidescape-remote-body .centerSpan {
@@ -1315,11 +1341,16 @@ class FiremoteCard extends LitElement {
 
           .kaleidescape-remote-body .directionButtonContainer {
             place-self: center;
-            border: calc(var(--sz) * 0.0714rem) solid #1c1c22;
+            border: calc(var(--sz) * 0.12rem) solid #0d0f15;
             background:
               conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0.10), rgba(0,0,0,0.12) 25%, rgba(255,255,255,0.10) 50%, rgba(0,0,0,0.12) 75%, rgba(255,255,255,0.10) 100%),
               radial-gradient(circle at 50% 36%, #6189bd 0%, #41699c 45%, #324f78 100%);
-            box-shadow: rgb(0 0 0 / 55%) 0 calc(var(--sz) * 0.18rem) calc(var(--sz) * 0.5rem), inset 0 calc(var(--sz) * 0.1rem) calc(var(--sz) * 0.2rem) rgb(255 255 255 / 12%);
+            box-shadow:
+              0 calc(var(--sz) * 0.22rem) calc(var(--sz) * 0.6rem) rgb(0 0 0 / 65%),
+              0 0 0 calc(var(--sz) * 0.14rem) rgb(8 10 16 / 85%),
+              0 0 0 calc(var(--sz) * 0.3rem) rgb(255 255 255 / 5%),
+              inset 0 calc(var(--sz) * 0.32rem) calc(var(--sz) * 0.45rem) rgb(0 0 0 / 55%),
+              inset 0 calc(var(--sz) * -0.16rem) calc(var(--sz) * 0.32rem) rgb(255 255 255 / 12%);
           }
 
           .kaleidescape-remote-body .dpadbutton {
