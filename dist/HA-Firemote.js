@@ -1,9 +1,9 @@
-const HAFiremoteVersion = 'v5.0.6';
+const HAFiremoteVersion = 'v5.0.7';
 
 import {LitElement, html, css, unsafeHTML, unsafeCSS, styleMap} from './lit/lit-all.min.js';
-import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.6";
-import {rosettaStone} from './language-translations.js?version=v5.0.6';
-import {devices} from './supported-devices.js?version=v5.0.6';
+import {launcherData, launcherCSS} from "./launcher-buttons.js?version=v5.0.7";
+import {rosettaStone} from './language-translations.js?version=v5.0.7';
+import {devices} from './supported-devices.js?version=v5.0.7';
 
 console.groupCollapsed("%c 🔥 FIREMOTE-CARD 🔥 %c "+HAFiremoteVersion+" installed ", "color: orange; font-weight: bold; background: black", "color: green; font-weight: bold;"),
 console.log("Readme:", "https://github.com/PRProd/HA-Firemote"),
@@ -979,6 +979,8 @@ class FiremoteCard extends LitElement {
           }
 
           .kaleidescape-remote-body {
+            position: relative;
+            isolation: isolate;
             background: linear-gradient(145deg, rgb(46, 46, 50) 0%, rgb(34, 34, 38) 45%, rgb(22, 22, 26) 100%);
             border: solid #14141a calc(var(--sz) * 0.06rem);
             border-radius: calc(var(--sz) * 2.1rem);
@@ -992,6 +994,24 @@ class FiremoteCard extends LitElement {
             min-height: calc(var(--sz) * 43rem);
             padding: calc(var(--sz) * 1.4rem) calc(var(--sz) * 1.20rem) calc(var(--sz) * 1.8rem);
             box-shadow: rgb(0 0 0 / 55%) 0 calc(var(--sz) * 0.5rem) calc(var(--sz) * 1.6rem), inset 0 calc(var(--sz) * 0.08rem) 0 rgb(255 255 255 / 7%);
+          }
+
+          /* Brushed-metal sheen overlay (sits just above the card background). */
+          .kaleidescape-remote-body .kaleidescapeBrushed {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            border-radius: inherit;
+            overflow: hidden;
+            opacity: 0.5;
+            mix-blend-mode: overlay;
+          }
+
+          .kaleidescape-remote-body .kaleidescapeBrushed svg {
+            display: block;
+            width: 100%;
+            height: 100%;
           }
 
           .kaleidescapeLogo {
@@ -5690,6 +5710,15 @@ class FiremoteCard extends LitElement {
       ${cssVars}
 
       <div class="kaleidescape-remote-body KA1">
+          <div class="kaleidescapeBrushed" aria-hidden="true">
+            <svg preserveAspectRatio="none">
+              <filter id="kaleidescape-brushed-filter" x="0" y="0" width="100%" height="100%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012 0.74" numOctaves="2" stitchTiles="stitch" result="n"></feTurbulence>
+                <feColorMatrix in="n" type="saturate" values="0"></feColorMatrix>
+              </filter>
+              <rect width="100%" height="100%" filter="url(#kaleidescape-brushed-filter)"></rect>
+            </svg>
+          </div>
           <div class="activityLight${kaleidescapeLedClass}"></div>
           ${drawDeviceName(this, this._config, 'top')}
 
